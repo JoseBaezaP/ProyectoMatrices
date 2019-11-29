@@ -1,7 +1,5 @@
 package Vista;
 
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,29 +10,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
     /** Creates new form frmVistaMatrices */
     public frmVistaMatrices() {
         initComponents();
-        inicializarTablas();
-        ocultarElementos();
-    }
-    
-    private void inicializarTablas(){
-        modeloA.setColumnCount(2);
-        modeloB.setColumnCount(2);
-        modeloC.setColumnCount(2);
         
-        modeloA.setRowCount(2);
-        modeloB.setRowCount(2);
-        modeloC.setRowCount(2);
-        
-        tbl_MatrizA.setModel(modeloA);
-        tbl_MatrizB.setModel(modeloB);
-        tbl_Resultado.setModel(modeloC);
-        
-        rb_Ninguno.setSelected(true);
-    }
-    
-    private void ocultarElementos(){
-        txt_Escalar.setVisible(false);
-        lb_Escalar.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,18 +31,18 @@ public class frmVistaMatrices extends javax.swing.JFrame {
         lb_Columnas = new javax.swing.JLabel();
         lb_Filas2 = new javax.swing.JLabel();
         lb_Columnas2 = new javax.swing.JLabel();
-        txt_Filas = new javax.swing.JTextField();
-        txt_Columnas = new javax.swing.JTextField();
-        txt_Filas2 = new javax.swing.JTextField();
-        txt_Columnas2 = new javax.swing.JTextField();
+        txt_FilasMatriz1 = new javax.swing.JTextField();
+        txt_ColumnasMatriz1 = new javax.swing.JTextField();
+        txt_FilasMatriz2 = new javax.swing.JTextField();
+        txt_ColumnasMatriz2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_MatrizA = new javax.swing.JTable();
+        tbl_Matriz1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_Resultado = new javax.swing.JTable();
         rb_Ninguno = new javax.swing.JRadioButton();
         lb_Titulo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbl_MatrizB = new javax.swing.JTable();
+        tbl_Matriz2 = new javax.swing.JTable();
         lb_Resultado = new javax.swing.JLabel();
         btn_Generar = new javax.swing.JButton();
         txt_Escalar = new javax.swing.JTextField();
@@ -142,7 +118,13 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
         lb_Columnas2.setText("Columnas");
 
-        tbl_MatrizA.setModel(new javax.swing.table.DefaultTableModel(
+        txt_FilasMatriz1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_FilasMatriz1ActionPerformed(evt);
+            }
+        });
+
+        tbl_Matriz1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -153,7 +135,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbl_MatrizA);
+        jScrollPane1.setViewportView(tbl_Matriz1);
 
         tbl_Resultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,10 +152,15 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
         buttonGroup1.add(rb_Ninguno);
         rb_Ninguno.setText("Ninguno");
+        rb_Ninguno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_NingunoActionPerformed(evt);
+            }
+        });
 
         lb_Titulo.setText("Calculadora de Matrices");
 
-        tbl_MatrizB.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Matriz2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -184,7 +171,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tbl_MatrizB);
+        jScrollPane3.setViewportView(tbl_Matriz2);
 
         lb_Resultado.setText("Resultado");
 
@@ -222,8 +209,8 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                                             .addComponent(lb_Filas))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_Filas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_Columnas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txt_FilasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_ColumnasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lb_MatrizA)
                                         .addGap(98, 98, 98)
@@ -246,8 +233,8 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                                             .addComponent(lb_Filas2))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_Filas2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_Columnas2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txt_FilasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_ColumnasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -292,15 +279,15 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_Filas)
-                    .addComponent(txt_Filas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_FilasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_Filas2)
-                    .addComponent(txt_Filas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_FilasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_Columnas)
-                    .addComponent(txt_Columnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ColumnasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_Columnas2)
-                    .addComponent(txt_Columnas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ColumnasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,137 +299,51 @@ public class frmVistaMatrices extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GenerarActionPerformed
-        // TODO add your handling code here:
-        try{
-            int FilasA = Integer.parseInt(txt_Filas.getText());
-            int ColumnasA = Integer.parseInt(txt_Columnas.getText());
-            
-            if(rb_Suma.isSelected() == true){
-                int FilasB = Integer.parseInt(txt_Filas2.getText());
-                int ColumnasB = Integer.parseInt(txt_Columnas2.getText());
-                boolean sePuede = (FilasA == FilasB) && (ColumnasA == ColumnasB);
-                if(sePuede){
-                    generarTablaA(FilasA, ColumnasA);
-                    generarTablaB(FilasB, ColumnasB);
-                    generarTablaResultado(FilasA, ColumnasA);
-                } else {
-                   JOptionPane.showMessageDialog(null,"Las matrices deben tener la misma dimension"); 
-                }
-            }
-
-            if(rb_MultEsc.isSelected() == true){
-                elementos();
-                txt_Escalar.setVisible(true);
-                lb_Escalar.setVisible(true);
-                generarTablaA(FilasA, ColumnasA);
-                generarTablaResultado(FilasA, ColumnasA);
-            }
-
-            if(rb_Multiplicar.isSelected() == true){
-                int FilasB = Integer.parseInt(txt_Filas2.getText());
-                int ColumnasB = Integer.parseInt(txt_Columnas2.getText());
-                elementosDosMatrices();
-                boolean sePuede =(ColumnasA == FilasB);
-                if(sePuede){
-                    generarTablaA(FilasA, ColumnasA);
-                    generarTablaB(FilasB, ColumnasB);
-                    generarTablaResultado(FilasA, ColumnasB);
-                } else {
-                   JOptionPane.showMessageDialog(null,"La cantidad de columnas de la Matriz A debe ser igual a la cantidad de filas de la Matriz B"); 
-                }
-
-            }
-            boolean operacionSingular = rb_SistEc.isSelected() || rb_Determinante.isSelected() || rb_SistEcCramer.isSelected() || rb_InvGauss.isSelected();
-            if(operacionSingular == true){
-                elementos();
-                generarTablaA(FilasA, ColumnasA);
-                generarTablaResultado(FilasA, ColumnasA);
-            }
-
-        } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Debe ingresar datos numericos en los campos de Fila(s) y Columna(s)");
-        }
+      
     }//GEN-LAST:event_btn_GenerarActionPerformed
 
     private void rb_SumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SumaActionPerformed
-        // TODO add your handling code here:
-        elementosDosMatrices();
+      // TODO add your handling code here:
     }//GEN-LAST:event_rb_SumaActionPerformed
 
     private void rb_MultEscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_MultEscActionPerformed
         // TODO add your handling code here:
-        elementos();
-        txt_Escalar.setVisible(true);
-        lb_Escalar.setVisible(true);
+       
     }//GEN-LAST:event_rb_MultEscActionPerformed
 
     private void rb_MultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_MultiplicarActionPerformed
         // TODO add your handling code here:
-        elementosDosMatrices();
+       
     }//GEN-LAST:event_rb_MultiplicarActionPerformed
 
     private void rb_SistEcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SistEcActionPerformed
         // TODO add your handling code here:
-        elementos();
+        
     }//GEN-LAST:event_rb_SistEcActionPerformed
 
     private void rb_DeterminanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_DeterminanteActionPerformed
         // TODO add your handling code here:
-        elementos();
+        
     }//GEN-LAST:event_rb_DeterminanteActionPerformed
 
     private void rb_SistEcCramerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SistEcCramerActionPerformed
         // TODO add your handling code here:
-        elementos();
+        
     }//GEN-LAST:event_rb_SistEcCramerActionPerformed
 
     private void rb_InvGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_InvGaussActionPerformed
         // TODO add your handling code here:
-        elementos();
+    
     }//GEN-LAST:event_rb_InvGaussActionPerformed
 
-    DefaultTableModel modeloA = new DefaultTableModel(); 
-    DefaultTableModel modeloB = new DefaultTableModel();
-    DefaultTableModel modeloC = new DefaultTableModel();
-    
-    private void elementos(){
-        txt_Escalar.setVisible(false);
-        lb_Escalar.setVisible(false);
-        lb_Filas2.setVisible(false);
-        lb_Columnas2.setVisible(false);
-        txt_Filas2.setVisible(false);
-        txt_Columnas2.setVisible(false);
-        lb_MatrizB.setVisible(false);
-        tbl_MatrizB.setVisible(false);
-    }
-    
-    private void elementosDosMatrices(){
-        txt_Escalar.setVisible(false);
-        lb_Escalar.setVisible(false);
-        lb_Filas2.setVisible(true);
-        lb_Columnas2.setVisible(true);
-        txt_Filas2.setVisible(true);
-        txt_Columnas2.setVisible(true);
-        lb_MatrizB.setVisible(true);
-        tbl_MatrizB.setVisible(true);
-    }
-    
-    private void generarTablaA(int filas,int columnas){
-        modeloA.setRowCount(filas);
-        modeloA.setColumnCount(columnas);
-        tbl_MatrizA.setModel(modeloA);
-    }
-    private void generarTablaB(int filas,int columnas){
-        modeloB.setRowCount(filas);
-        modeloB.setColumnCount(columnas);
-        tbl_MatrizB.setModel(modeloB);
-    }
-    private void generarTablaResultado(int filas,int columnas){
-        modeloC.setColumnCount(columnas);
-        modeloC.setRowCount(filas);
-        tbl_Resultado.setModel(modeloC);
-    }
-    
+    private void rb_NingunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NingunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_NingunoActionPerformed
+
+    private void txt_FilasMatriz1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FilasMatriz1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_FilasMatriz1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -480,36 +381,36 @@ public class frmVistaMatrices extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Generar;
+    public javax.swing.JButton btn_Generar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lb_Columnas;
-    private javax.swing.JLabel lb_Columnas2;
-    private javax.swing.JLabel lb_Escalar;
+    public javax.swing.JLabel lb_Columnas2;
+    public javax.swing.JLabel lb_Escalar;
     private javax.swing.JLabel lb_Filas;
-    private javax.swing.JLabel lb_Filas2;
+    public javax.swing.JLabel lb_Filas2;
     private javax.swing.JLabel lb_MatrizA;
-    private javax.swing.JLabel lb_MatrizB;
+    public javax.swing.JLabel lb_MatrizB;
     private javax.swing.JLabel lb_Resultado;
     private javax.swing.JLabel lb_Titulo;
-    private javax.swing.JRadioButton rb_Determinante;
-    private javax.swing.JRadioButton rb_InvGauss;
-    private javax.swing.JRadioButton rb_MultEsc;
-    private javax.swing.JRadioButton rb_Multiplicar;
-    private javax.swing.JRadioButton rb_Ninguno;
-    private javax.swing.JRadioButton rb_SistEc;
-    private javax.swing.JRadioButton rb_SistEcCramer;
-    private javax.swing.JRadioButton rb_Suma;
-    private javax.swing.JTable tbl_MatrizA;
-    private javax.swing.JTable tbl_MatrizB;
-    private javax.swing.JTable tbl_Resultado;
-    private javax.swing.JTextField txt_Columnas;
-    private javax.swing.JTextField txt_Columnas2;
-    private javax.swing.JTextField txt_Escalar;
-    private javax.swing.JTextField txt_Filas;
-    private javax.swing.JTextField txt_Filas2;
+    public javax.swing.JRadioButton rb_Determinante;
+    public javax.swing.JRadioButton rb_InvGauss;
+    public javax.swing.JRadioButton rb_MultEsc;
+    public javax.swing.JRadioButton rb_Multiplicar;
+    public javax.swing.JRadioButton rb_Ninguno;
+    public javax.swing.JRadioButton rb_SistEc;
+    public javax.swing.JRadioButton rb_SistEcCramer;
+    public javax.swing.JRadioButton rb_Suma;
+    public javax.swing.JTable tbl_Matriz1;
+    public javax.swing.JTable tbl_Matriz2;
+    public javax.swing.JTable tbl_Resultado;
+    public javax.swing.JTextField txt_ColumnasMatriz1;
+    public javax.swing.JTextField txt_ColumnasMatriz2;
+    public javax.swing.JTextField txt_Escalar;
+    public javax.swing.JTextField txt_FilasMatriz1;
+    public javax.swing.JTextField txt_FilasMatriz2;
     // End of variables declaration//GEN-END:variables
 
 }
