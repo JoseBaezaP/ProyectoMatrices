@@ -29,69 +29,85 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rb_Suma" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_Ninguno" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_SistEc" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_MultEsc" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_Multiplicar" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_Determinante" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_SistEcCramer" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rb_InvGauss" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lb_Columnas" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lb_Filas" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="rb_InvGauss" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lb_Columnas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lb_Filas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txt_FilasMatrizA" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="txt_ColumnasMatrizA" min="-2" pref="50" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txt_FilasMatriz1" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="txt_ColumnasMatriz1" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" pref="359" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="btn_Generar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lb_MatrizA" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          <Component id="btn_Operacion" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lb_Escalar" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txt_Escalar" min="-2" pref="47" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lb_MatrizA" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="lb_Escalar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txt_Escalar" min="-2" pref="47" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane1" min="-2" pref="359" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lb_Titulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" alignment="0" pref="360" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lb_Resultado" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lb_MatrizB" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lb_Columnas2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lb_Filas2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txt_FilasMatriz2" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="txt_ColumnasMatriz2" min="-2" pref="49" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lb_Titulo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rb_Suma" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_SistEc" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_MultEsc" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_Multiplicar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_Determinante" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_SistEcCramer" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane3" alignment="0" pref="345" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" pref="345" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-                      <Component id="btn_Generar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lb_MatrizB" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lb_Columnas2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_Filas2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txt_FilasMatrizB" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="txt_ColumnasMatrizB" min="-2" pref="49" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lb_Resultado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lb_Determinante" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txt_Determinante" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -101,18 +117,24 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lb_Titulo" min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="lb_Titulo" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lb_Resultado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_Determinante" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_Determinante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lb_Resultado" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="rb_Ninguno" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="rb_Suma" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="rb_MultEsc" min="-2" max="-2" attributes="0"/>
@@ -124,33 +146,36 @@
                       <Component id="rb_Determinante" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rb_SistEcCramer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="rb_InvGauss" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_Generar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_Operacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lb_Escalar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_Escalar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="jScrollPane2" min="-2" pref="155" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="rb_InvGauss" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="btn_Generar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lb_MatrizA" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lb_MatrizB" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_Escalar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lb_Escalar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lb_Filas" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_FilasMatriz1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_FilasMatrizA" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lb_Filas2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_FilasMatriz2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_FilasMatrizB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lb_Columnas" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_ColumnasMatriz1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_ColumnasMatrizA" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lb_Columnas2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_ColumnasMatriz2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_ColumnasMatrizB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -300,25 +325,25 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_FilasMatriz1">
+    <Component class="javax.swing.JTextField" name="txt_FilasMatrizA">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_FilasMatriz1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_FilasMatrizAActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_ColumnasMatriz1">
+    <Component class="javax.swing.JTextField" name="txt_ColumnasMatrizA">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_FilasMatriz2">
+    <Component class="javax.swing.JTextField" name="txt_FilasMatrizB">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_ColumnasMatriz2">
+    <Component class="javax.swing.JTextField" name="txt_ColumnasMatrizB">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -330,7 +355,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbl_Matriz1">
+        <Component class="javax.swing.JTable" name="tbl_MatrizA">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -371,22 +396,11 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JRadioButton" name="rb_Ninguno">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Ninguno"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_NingunoActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="lb_Titulo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="24" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Calculadora de Matrices"/>
       </Properties>
     </Component>
@@ -397,7 +411,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbl_Matriz2">
+        <Component class="javax.swing.JTable" name="tbl_MatrizB">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -418,6 +432,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Resultado"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Generar">
       <Properties>
@@ -438,6 +455,27 @@
     <Component class="javax.swing.JLabel" name="lb_Escalar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Escalar"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_Determinante">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Determinante"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_Determinante">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Operacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Operacion"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

@@ -3,12 +3,10 @@ package Modelo;
 public class OperacionesBasicasMatrices {
     
     
-    public int[][] suma(int[][] matriz_uno, int [][] matriz_dos){
+    public double[][] suma(double[][] matriz_uno, double [][] matriz_dos){
+        double [][]suma;
         
-        int [][]suma;
-        
-
-        suma = new int[matriz_uno.length][matriz_uno.length];
+        suma = new double[matriz_uno.length][matriz_uno.length];
         
         //Suma de las matrices posicion por poscicion
         for(int filasCounter=0;filasCounter<matriz_uno.length;filasCounter++) {
@@ -19,13 +17,13 @@ public class OperacionesBasicasMatrices {
         return suma;
     }
     
-    public int [][] multiplicacion(int [][] matriz_uno, int [][] matriz_dos){
+    public double [][] multiplicacion(double [][] matriz_uno, double [][] matriz_dos){
         int filaUno = matriz_uno.length;
         int filaDos = matriz_dos.length;
         int columnaUno = matriz_uno[0].length;
         int columnaDos = matriz_dos[0].length;
-        int [][] mult;
-        mult = new int[filaUno][columnaDos];
+        double [][] mult;
+        mult = new double[filaUno][columnaDos];
 
        //Valida si se puede realizar la operacion
         if(columnaUno == filaDos){
@@ -54,7 +52,7 @@ public class OperacionesBasicasMatrices {
         }
     }
     
-    public int [][] multEscalar(int [][] matriz, int escalar){
+    public double [][] multEscalar(double [][] matriz, double escalar){
 
         int filas = matriz.length;
         int columnas = matriz[0].length;
@@ -66,11 +64,40 @@ public class OperacionesBasicasMatrices {
                 matriz[filasCounter][columnasCounter] = escalar*matriz[filasCounter][columnasCounter];    
             }
         }
-
         return matriz;
     }
     
-        
-
     
+    //******************************************Calcular determinante*************************************************
+    public double calcularDeterminante (double[][] matriz){
+        double determinante = 0;
+        int filas = matriz.length;
+        int columnas = matriz[0].length;
+        
+        if ((filas == 1) && (columnas == 1)){
+            return matriz[0][0];
+        }
+        
+        int signo = 1;
+        for (int columna = 0; columna < columnas; columna++) {
+            double[][] submatriz = getSubmatriz(matriz, filas, columnas, columna);
+            determinante = determinante + signo*matriz[0][columna]*calcularDeterminante(submatriz);
+            signo *= -1;
+        }
+        return determinante;
+    }
+    
+    public static double[][] getSubmatriz(double[][] matriz, int filas, int columnas, int columna) {
+        double [][] submatriz = new double[filas-1][columnas-1];
+        int contador = 0;
+        for (int j = 0;j < columnas;j++) {
+            if (j == columna) continue;
+            for (int i = 1; i < filas; i++){
+                submatriz[i-1][contador]=matriz[i][j];
+            }       
+            contador++;
+        }
+        return submatriz;
+    }
+    //**************************************************************************************************************
 }

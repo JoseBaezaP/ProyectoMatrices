@@ -1,16 +1,12 @@
 package Vista;
-
-
 /**
  *
  * @author ANJ
  */
 public class frmVistaMatrices extends javax.swing.JFrame {
-    
     /** Creates new form frmVistaMatrices */
     public frmVistaMatrices() {
         initComponents();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -31,22 +27,24 @@ public class frmVistaMatrices extends javax.swing.JFrame {
         lb_Columnas = new javax.swing.JLabel();
         lb_Filas2 = new javax.swing.JLabel();
         lb_Columnas2 = new javax.swing.JLabel();
-        txt_FilasMatriz1 = new javax.swing.JTextField();
-        txt_ColumnasMatriz1 = new javax.swing.JTextField();
-        txt_FilasMatriz2 = new javax.swing.JTextField();
-        txt_ColumnasMatriz2 = new javax.swing.JTextField();
+        txt_FilasMatrizA = new javax.swing.JTextField();
+        txt_ColumnasMatrizA = new javax.swing.JTextField();
+        txt_FilasMatrizB = new javax.swing.JTextField();
+        txt_ColumnasMatrizB = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_Matriz1 = new javax.swing.JTable();
+        tbl_MatrizA = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_Resultado = new javax.swing.JTable();
-        rb_Ninguno = new javax.swing.JRadioButton();
         lb_Titulo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbl_Matriz2 = new javax.swing.JTable();
+        tbl_MatrizB = new javax.swing.JTable();
         lb_Resultado = new javax.swing.JLabel();
         btn_Generar = new javax.swing.JButton();
         txt_Escalar = new javax.swing.JTextField();
         lb_Escalar = new javax.swing.JLabel();
+        lb_Determinante = new javax.swing.JLabel();
+        txt_Determinante = new javax.swing.JTextField();
+        btn_Operacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,13 +116,13 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
         lb_Columnas2.setText("Columnas");
 
-        txt_FilasMatriz1.addActionListener(new java.awt.event.ActionListener() {
+        txt_FilasMatrizA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_FilasMatriz1ActionPerformed(evt);
+                txt_FilasMatrizAActionPerformed(evt);
             }
         });
 
-        tbl_Matriz1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_MatrizA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -135,7 +133,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbl_Matriz1);
+        jScrollPane1.setViewportView(tbl_MatrizA);
 
         tbl_Resultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,17 +148,10 @@ public class frmVistaMatrices extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_Resultado);
 
-        buttonGroup1.add(rb_Ninguno);
-        rb_Ninguno.setText("Ninguno");
-        rb_Ninguno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_NingunoActionPerformed(evt);
-            }
-        });
-
+        lb_Titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lb_Titulo.setText("Calculadora de Matrices");
 
-        tbl_Matriz2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_MatrizB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -171,7 +162,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tbl_Matriz2);
+        jScrollPane3.setViewportView(tbl_MatrizB);
 
         lb_Resultado.setText("Resultado");
 
@@ -184,76 +175,95 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
         lb_Escalar.setText("Escalar");
 
+        lb_Determinante.setText("Determinante");
+
+        btn_Operacion.setText("Operacion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rb_Suma)
-                    .addComponent(rb_Ninguno)
-                    .addComponent(rb_SistEc)
-                    .addComponent(rb_MultEsc)
-                    .addComponent(rb_Multiplicar)
-                    .addComponent(rb_Determinante)
-                    .addComponent(rb_SistEcCramer)
-                    .addComponent(rb_InvGauss)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rb_InvGauss)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lb_Columnas)
+                                                .addComponent(lb_Filas))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txt_FilasMatrizA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txt_ColumnasMatrizA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(btn_Generar)
+                                                .addComponent(lb_MatrizA))
+                                            .addGap(4, 4, 4)
+                                            .addComponent(btn_Operacion)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(lb_Escalar)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txt_Escalar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGap(26, 26, 26))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lb_Titulo)
+                            .addGap(66, 66, 66)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lb_Columnas)
-                                            .addComponent(lb_Filas))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_FilasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_ColumnasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lb_MatrizA)
-                                        .addGap(98, 98, 98)
-                                        .addComponent(lb_Escalar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_Escalar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lb_Titulo))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb_Resultado)
-                                    .addComponent(lb_MatrizB)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lb_Columnas2)
-                                            .addComponent(lb_Filas2))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_FilasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_ColumnasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(rb_Suma)
+                            .addComponent(rb_SistEc)
+                            .addComponent(rb_MultEsc)
+                            .addComponent(rb_Multiplicar)
+                            .addComponent(rb_Determinante)
+                            .addComponent(rb_SistEcCramer))
+                        .addGap(258, 258, 258)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btn_Generar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_MatrizB)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lb_Columnas2)
+                                    .addComponent(lb_Filas2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_FilasMatrizB, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ColumnasMatrizB, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lb_Resultado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lb_Determinante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Determinante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lb_Resultado)))
-                .addGap(18, 18, 18)
+                        .addGap(24, 24, 24)
+                        .addComponent(lb_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_Resultado)
+                            .addComponent(lb_Determinante)
+                            .addComponent(txt_Determinante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rb_Ninguno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rb_Suma)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rb_MultEsc)
@@ -264,30 +274,32 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rb_Determinante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rb_SistEcCramer))
+                        .addComponent(rb_SistEcCramer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_InvGauss)
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_Generar)
+                            .addComponent(btn_Operacion)
+                            .addComponent(lb_Escalar)
+                            .addComponent(txt_Escalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rb_InvGauss)
-                .addGap(3, 3, 3)
-                .addComponent(btn_Generar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_MatrizA)
-                    .addComponent(lb_MatrizB)
-                    .addComponent(txt_Escalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_Escalar))
+                    .addComponent(lb_MatrizB))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_Filas)
-                    .addComponent(txt_FilasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_FilasMatrizA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_Filas2)
-                    .addComponent(txt_FilasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_FilasMatrizB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_Columnas)
-                    .addComponent(txt_ColumnasMatriz1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ColumnasMatrizA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_Columnas2)
-                    .addComponent(txt_ColumnasMatriz2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ColumnasMatrizB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,13 +348,9 @@ public class frmVistaMatrices extends javax.swing.JFrame {
     
     }//GEN-LAST:event_rb_InvGaussActionPerformed
 
-    private void rb_NingunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NingunoActionPerformed
+    private void txt_FilasMatrizAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FilasMatrizAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rb_NingunoActionPerformed
-
-    private void txt_FilasMatriz1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FilasMatriz1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_FilasMatriz1ActionPerformed
+    }//GEN-LAST:event_txt_FilasMatrizAActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -382,35 +390,37 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_Generar;
+    public javax.swing.JButton btn_Operacion;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lb_Columnas;
     public javax.swing.JLabel lb_Columnas2;
+    public javax.swing.JLabel lb_Determinante;
     public javax.swing.JLabel lb_Escalar;
     private javax.swing.JLabel lb_Filas;
     public javax.swing.JLabel lb_Filas2;
     private javax.swing.JLabel lb_MatrizA;
     public javax.swing.JLabel lb_MatrizB;
-    private javax.swing.JLabel lb_Resultado;
+    public javax.swing.JLabel lb_Resultado;
     private javax.swing.JLabel lb_Titulo;
     public javax.swing.JRadioButton rb_Determinante;
     public javax.swing.JRadioButton rb_InvGauss;
     public javax.swing.JRadioButton rb_MultEsc;
     public javax.swing.JRadioButton rb_Multiplicar;
-    public javax.swing.JRadioButton rb_Ninguno;
     public javax.swing.JRadioButton rb_SistEc;
     public javax.swing.JRadioButton rb_SistEcCramer;
     public javax.swing.JRadioButton rb_Suma;
-    public javax.swing.JTable tbl_Matriz1;
-    public javax.swing.JTable tbl_Matriz2;
+    public javax.swing.JTable tbl_MatrizA;
+    public javax.swing.JTable tbl_MatrizB;
     public javax.swing.JTable tbl_Resultado;
-    public javax.swing.JTextField txt_ColumnasMatriz1;
-    public javax.swing.JTextField txt_ColumnasMatriz2;
+    public javax.swing.JTextField txt_ColumnasMatrizA;
+    public javax.swing.JTextField txt_ColumnasMatrizB;
+    public javax.swing.JTextField txt_Determinante;
     public javax.swing.JTextField txt_Escalar;
-    public javax.swing.JTextField txt_FilasMatriz1;
-    public javax.swing.JTextField txt_FilasMatriz2;
+    public javax.swing.JTextField txt_FilasMatrizA;
+    public javax.swing.JTextField txt_FilasMatrizB;
     // End of variables declaration//GEN-END:variables
 
 }

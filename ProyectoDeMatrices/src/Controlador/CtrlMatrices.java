@@ -3,153 +3,234 @@ import Vista.frmVistaMatrices;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Modelo.ModeloMatriz;
+import Modelo.OperacionesBasicasMatrices;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class CtrlMatrices implements ActionListener{
     
-    frmVistaMatrices operaciones;
+    frmVistaMatrices vistaMatrices;
+    OperacionesBasicasMatrices operaciones = new OperacionesBasicasMatrices();
     
-    
-    
-    public void multiplicar(){
-        
-    }
-     public CtrlMatrices(){
-        this.operaciones = new frmVistaMatrices();
-       inicializar();
-       inicializarTablas();
-       ocultarElementos();
+    public CtrlMatrices(){
+        this.vistaMatrices = new frmVistaMatrices();
+        inicializar();
+        inicializarTablas();
+        mostrarElementosDosMatrices();
     }
     public void inicializar(){
-        this.operaciones.rb_Suma.addActionListener(this);
-        this.operaciones.rb_Suma.setActionCommand("suma");
-        this.operaciones.rb_InvGauss.addActionListener(this);
-        this.operaciones.rb_InvGauss.setActionCommand("InvGauss");
-        this.operaciones.rb_MultEsc.addActionListener(this);
-        this.operaciones.rb_MultEsc.setActionCommand("MultEsc");
-        this.operaciones.rb_Multiplicar.addActionListener(this);
-        this.operaciones.rb_Multiplicar.setActionCommand("Multiplicar");
-        this.operaciones.rb_SistEc.addActionListener(this);
-        this.operaciones.rb_SistEc.setActionCommand("SistEc");
-        this.operaciones.rb_Determinante.addActionListener(this);
-        this.operaciones.rb_Determinante.setActionCommand("Determinante");
-        this.operaciones.rb_SistEcCramer.addActionListener(this);
-        this.operaciones.rb_SistEcCramer.setActionCommand("SistEcCramer");
-        this.operaciones.btn_Generar.addActionListener(this);
-        this.operaciones.btn_Generar.setActionCommand("Generar");
-        this.operaciones.setVisible(true);
-        this.operaciones.setLocationRelativeTo(null);
+        this.vistaMatrices.rb_Suma.addActionListener(this);
+        this.vistaMatrices.rb_Suma.setActionCommand("suma");
+        this.vistaMatrices.rb_InvGauss.addActionListener(this);
+        this.vistaMatrices.rb_InvGauss.setActionCommand("InvGauss");
+        this.vistaMatrices.rb_MultEsc.addActionListener(this);
+        this.vistaMatrices.rb_MultEsc.setActionCommand("MultEsc");
+        this.vistaMatrices.rb_Multiplicar.addActionListener(this);
+        this.vistaMatrices.rb_Multiplicar.setActionCommand("Multiplicar");
+        this.vistaMatrices.rb_SistEc.addActionListener(this);
+        this.vistaMatrices.rb_SistEc.setActionCommand("SistEc");
+        this.vistaMatrices.rb_Determinante.addActionListener(this);
+        this.vistaMatrices.rb_Determinante.setActionCommand("Determinante");
+        this.vistaMatrices.rb_SistEcCramer.addActionListener(this);
+        this.vistaMatrices.rb_SistEcCramer.setActionCommand("SistEcCramer");
+        this.vistaMatrices.btn_Generar.addActionListener(this);
+        this.vistaMatrices.btn_Generar.setActionCommand("Generar");
+        this.vistaMatrices.btn_Operacion.addActionListener(this);
+        this.vistaMatrices.btn_Operacion.setActionCommand("Operacion");
+        this.vistaMatrices.setVisible(true);
+        this.vistaMatrices.setLocationRelativeTo(null);
     }
+    
     public void inicializarTablas(){   
-    DefaultTableModel modeloA = new DefaultTableModel(); 
-    DefaultTableModel modeloB = new DefaultTableModel();
-    DefaultTableModel modeloC = new DefaultTableModel();
-        modeloA.setColumnCount(2);
-        modeloB.setColumnCount(2);
-        modeloC.setColumnCount(2);
-        modeloA.setRowCount(2);
-        modeloB.setRowCount(2);
-        modeloC.setRowCount(2);
-        
-         this.operaciones.tbl_Matriz1.setModel(modeloA);
-         this.operaciones.tbl_Matriz2.setModel(modeloB);
-         this.operaciones.tbl_Resultado.setModel(modeloC);
-        
-         this.operaciones.rb_Ninguno.setSelected(true);
+        DefaultTableModel modeloA = new DefaultTableModel(); 
+        DefaultTableModel modeloB = new DefaultTableModel();
+        DefaultTableModel modeloC = new DefaultTableModel();
+        modeloA.setColumnCount(0);
+        modeloB.setColumnCount(0);
+        modeloC.setColumnCount(0);
+        modeloA.setRowCount(0);
+        modeloB.setRowCount(0);
+        modeloC.setRowCount(0);
+
+        this.vistaMatrices.tbl_MatrizA.setModel(modeloA);
+        this.vistaMatrices.tbl_MatrizB.setModel(modeloB);
+        this.vistaMatrices.tbl_Resultado.setModel(modeloC);
+
+        this.vistaMatrices.rb_Suma.setSelected(true);
     }
-    public void ocultarElementos(){
-        this.operaciones.txt_Escalar.setVisible(false);
-        this.operaciones.lb_Escalar.setVisible(false);
-    }
+    
     public void generarMatrices(){
         try{
-        ModeloMatriz modelo=new ModeloMatriz();
-        if(this.operaciones.rb_Suma.isSelected() == true){
-            modelo.Validacion(Integer.parseInt(this.operaciones.txt_FilasMatriz1.getText()),Integer.parseInt(this.operaciones.txt_ColumnasMatriz1.getText()),
-                              Integer.parseInt(this.operaciones.txt_FilasMatriz2.getText()),Integer.parseInt(this.operaciones.txt_ColumnasMatriz2.getText()),"suma");
-            this.operaciones.tbl_Matriz1.setModel(modelo.getMatriz1());
-            this.operaciones.tbl_Matriz2.setModel(modelo.getMatriz2());
-            this.operaciones.tbl_Resultado.setModel(modelo.getMatrizResultante());
+            ModeloMatriz modelo = new ModeloMatriz();
+            if(this.vistaMatrices.rb_Suma.isSelected() == true){
+                modelo.Validacion(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()),
+                                  Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText()),Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText()),"suma");
+                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
+                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
-       if(this.operaciones.rb_MultEsc.isSelected() == true){
-            modelo.generarMatriz1(Integer.parseInt(this.operaciones.txt_FilasMatriz1.getText()),
-                                  Integer.parseInt(this.operaciones.txt_ColumnasMatriz1.getText()));
-            this.operaciones.tbl_Matriz1.setModel(modelo.getMatriz1());
-            this.operaciones.tbl_Resultado.setModel(modelo.getMatriz1());
-
+            if(this.vistaMatrices.rb_MultEsc.isSelected() == true){
+                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
+                                      Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
+                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
-       if(this.operaciones.rb_Multiplicar.isSelected() == true){
-          modelo.Validacion(Integer.parseInt(this.operaciones.txt_FilasMatriz1.getText()),Integer.parseInt(this.operaciones.txt_ColumnasMatriz1.getText()),
-                              Integer.parseInt(this.operaciones.txt_FilasMatriz2.getText()),Integer.parseInt(this.operaciones.txt_ColumnasMatriz2.getText()),"multiplicacion");
-            this.operaciones.tbl_Matriz1.setModel(modelo.getMatriz1());
-            this.operaciones.tbl_Matriz2.setModel(modelo.getMatriz2());
-            this.operaciones.tbl_Resultado.setModel(modelo.getMatrizResultante());
-
+            if(this.vistaMatrices.rb_Multiplicar.isSelected() == true){
+                modelo.Validacion(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()),
+                                  Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText()),Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText()),"multiplicacion");
+                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
+                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
-       boolean operacionSingular = this.operaciones.rb_SistEc.isSelected() ||this.operaciones.rb_Determinante.isSelected() || this.operaciones.rb_SistEcCramer.isSelected() || this.operaciones.rb_InvGauss.isSelected();
+            boolean operacionSingular = this.vistaMatrices.rb_SistEc.isSelected() ||this.vistaMatrices.rb_Determinante.isSelected() || this.vistaMatrices.rb_SistEcCramer.isSelected() || this.vistaMatrices.rb_InvGauss.isSelected();
             if(operacionSingular == true){           
-                modelo.generarMatriz1(Integer.parseInt(this.operaciones.txt_FilasMatriz1.getText()),
-                                  Integer.parseInt(this.operaciones.txt_ColumnasMatriz1.getText()));
-            this.operaciones.tbl_Matriz1.setModel(modelo.getMatriz1());
-            this.operaciones.tbl_Resultado.setModel(modelo.getMatriz1());
+                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
+                                  Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
+                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
-         } catch (NumberFormatException e){
+        } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Debe ingresar datos numericos en los campos de Fila(s) y Columna(s)");
         }
     }
-    public void elementosDosMatrices(){   
-        this.operaciones.lb_Escalar.setVisible(false);
-        this.operaciones.txt_Escalar.setVisible(false);
-        this.operaciones.lb_Filas2.setVisible(true);
-        this.operaciones.lb_Columnas2.setVisible(true);
-        this.operaciones.txt_FilasMatriz2.setVisible(true);
-        this.operaciones.txt_ColumnasMatriz2.setVisible(true);
-        this.operaciones.lb_MatrizB.setVisible(true);
-        this.operaciones.tbl_Matriz2.setVisible(true);
-      
+    
+    public void mostrarElementosDosMatrices(){   
+        this.vistaMatrices.lb_Escalar.setVisible(false);
+        this.vistaMatrices.txt_Escalar.setVisible(false);
+        this.vistaMatrices.lb_Filas2.setVisible(true);
+        this.vistaMatrices.lb_Columnas2.setVisible(true);
+        this.vistaMatrices.txt_FilasMatrizB.setVisible(true);
+        this.vistaMatrices.txt_ColumnasMatrizB.setVisible(true);
+        this.vistaMatrices.lb_MatrizB.setVisible(true);
+        this.vistaMatrices.tbl_MatrizB.setVisible(true);
+        this.vistaMatrices.txt_Determinante.setVisible(false);
+        this.vistaMatrices.lb_Determinante.setVisible(false);
+        this.vistaMatrices.lb_Resultado.setVisible(true);
+        this.vistaMatrices.tbl_Resultado.setVisible(true);
     }
-     private void elementos(){
-        this.operaciones.txt_Escalar.setVisible(false);
-        this.operaciones.lb_Escalar.setVisible(false);
-        this.operaciones.lb_Filas2.setVisible(false);
-        this.operaciones.lb_Columnas2.setVisible(false);
-        this.operaciones.txt_FilasMatriz2.setVisible(false);
-        this.operaciones.txt_ColumnasMatriz2.setVisible(false);
-        this.operaciones.lb_MatrizB.setVisible(false);
-        this.operaciones.tbl_Matriz2.setVisible(false);
-   
+    
+    private void mostrarElementosUnaMatriz(){
+        this.vistaMatrices.txt_Determinante.setVisible(false);
+        this.vistaMatrices.lb_Determinante.setVisible(false);
+        this.vistaMatrices.txt_Escalar.setVisible(false);
+        this.vistaMatrices.lb_Escalar.setVisible(false);
+        this.vistaMatrices.lb_Filas2.setVisible(false);
+        this.vistaMatrices.lb_Columnas2.setVisible(false);
+        this.vistaMatrices.txt_FilasMatrizB.setVisible(false);
+        this.vistaMatrices.txt_ColumnasMatrizB.setVisible(false);
+        this.vistaMatrices.lb_MatrizB.setVisible(false);
+        this.vistaMatrices.tbl_MatrizB.setVisible(false);
+        this.vistaMatrices.lb_Resultado.setVisible(true);
+        this.vistaMatrices.tbl_Resultado.setVisible(true);
     }
 
+    private double[][] recolectarDatosMatrizA(){
+        int filas = this.vistaMatrices.tbl_MatrizA.getRowCount();
+        int columnas = this.vistaMatrices.tbl_MatrizA.getColumnCount();
+        double[][] matriz = new double[filas][columnas];
+        
+        for(int i = 0; i < filas; i++){
+            for(int j = 0; j < columnas; j++){
+                matriz[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizA.getModel().getValueAt(i, j).toString());
+            }
+        }
+        return matriz;
+    }
+    
+    private double[][] recolectarDatosMatrizB(){
+        int filas = this.vistaMatrices.tbl_MatrizB.getRowCount();
+        int columnas = this.vistaMatrices.tbl_MatrizB.getColumnCount();
+        double[][] matriz = new double[filas][columnas];
+        
+        for(int i = 0; i < filas; i++){
+            for(int j = 0; j < columnas; j++){
+                matriz[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizB.getModel().getValueAt(i, j).toString());
+            }
+        }
+        return matriz;
+    }
+    
+    private void mostrarMatrizResultado(double[][] matriz){
+         int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
+        int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
+        for(int i = 0; i < filas; i++){
+            for(int j = 0; j < columnas; j++){
+                this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
+            }
+        }
+    }
+    
+    private void seleccionarOperacion(){
+        
+        if(this.vistaMatrices.rb_Suma.isSelected() == true){
+            double[][] matrizResultado = operaciones.suma(recolectarDatosMatrizA(), recolectarDatosMatrizB());
+            mostrarMatrizResultado(matrizResultado);
+        }
+        
+        if(this.vistaMatrices.rb_MultEsc.isSelected() == true){
+            double[][] matrizResultado = operaciones.multEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
+            mostrarMatrizResultado(matrizResultado);
+        }
+        
+        if(this.vistaMatrices.rb_Multiplicar.isSelected() == true){
+            double[][] matrizResultado = operaciones.multiplicacion(recolectarDatosMatrizA(), recolectarDatosMatrizB());
+            mostrarMatrizResultado(matrizResultado);
+        }
+        
+        if(this.vistaMatrices.rb_SistEc.isSelected() == true){
+            
+        }
+        
+        if(this.vistaMatrices.rb_Determinante.isSelected() == true){
+            double determinante = operaciones.calcularDeterminante(recolectarDatosMatrizA());
+            this.vistaMatrices.txt_Determinante.setText(String.valueOf(determinante));
+        }
+        
+        if(this.vistaMatrices.rb_SistEcCramer.isSelected() == true){
+            
+        }
+        
+        if(this.vistaMatrices.rb_InvGauss.isSelected() == true){
+            
+        }
+    }
+    
     @Override
     public void actionPerformed(ActionEvent event) {  
-      switch(event.getActionCommand()){
+        switch(event.getActionCommand()){
             case "suma":
-                elementosDosMatrices();
+                mostrarElementosDosMatrices();
                 break;
             case "MultEsc":
-                 elementos();
-                this.operaciones.txt_Escalar.setVisible(true);
-                this.operaciones.lb_Escalar.setVisible(true);
+                mostrarElementosUnaMatriz();
+                this.vistaMatrices.txt_Escalar.setVisible(true);
+                this.vistaMatrices.lb_Escalar.setVisible(true);
                 break;
             case "Multiplicar":
-                   elementosDosMatrices();
+                   mostrarElementosDosMatrices();
                 break;
             case "SistEc":
-                 elementos();
+                mostrarElementosUnaMatriz();
                 break;
             case "Determinante":
-                elementos();
+                mostrarElementosUnaMatriz();
+                this.vistaMatrices.txt_Determinante.setVisible(true);
+                this.vistaMatrices.lb_Determinante.setVisible(true);
+                this.vistaMatrices.lb_Resultado.setVisible(false);
+                this.vistaMatrices.tbl_Resultado.setVisible(false);
                 break;
             case "SistEcCramer":
-                 elementos();
+                mostrarElementosUnaMatriz();
                 break;
             case "InvGauss":
-                elementos();
+                mostrarElementosUnaMatriz();
                 break;
             case "Generar":
                 generarMatrices();
                 break;
-      }
+            case "Operacion":
+                seleccionarOperacion();
+                break;
+        }
     }
 }
