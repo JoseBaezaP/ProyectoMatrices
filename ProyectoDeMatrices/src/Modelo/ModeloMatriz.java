@@ -8,12 +8,6 @@ import javax.swing.table.DefaultTableModel;
  * @author josebaeza
  */
 public class ModeloMatriz {
- 
-    /**
-     *
-     */
-    public DefaultTableModel tabla = new DefaultTableModel(); 
-
     /**
      *
      */
@@ -27,24 +21,7 @@ public class ModeloMatriz {
     /**
      *
      */
-    public DefaultTableModel MatrizResultante = new DefaultTableModel();
-    
-    /**
-     *
-     * @return
-     */
-    public DefaultTableModel getTabla() {
-        return tabla;
-    }
-    
-    /**
-     *
-     * @param tabla
-     */
-    public void setTabla(DefaultTableModel tabla) {
-        this.tabla = tabla;
-    }
-    
+    public DefaultTableModel MatrizResultante = new DefaultTableModel();   
     /**
      *
      * @return
@@ -144,16 +121,6 @@ public class ModeloMatriz {
                     break;
         }
     }
-    
-    /**
-     *
-     * @param fil
-     * @param col
-     */
-    public void generarTabla(int fil,int col){
-        
-    }
-    
     /**
      *
      * @param fila
