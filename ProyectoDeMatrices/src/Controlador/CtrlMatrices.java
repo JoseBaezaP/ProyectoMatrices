@@ -236,7 +236,10 @@ public class CtrlMatrices implements ActionListener{
         }
         
         if(this.vistaMatrices.rb_InvGauss.isSelected() == true){
-            
+            System.out.println("here");
+            double[][] matrizResultado = operaciones.invert(recolectarDatosMatrizA());
+            mostrarMatrizResultado(matrizResultado);
+            System.out.println("not here");
         }
     }
     
