@@ -127,37 +127,43 @@ public class CtrlMatrices implements ActionListener{
     private double[][] recolectarDatosMatrizA(){
         int filas = this.vistaMatrices.tbl_MatrizA.getRowCount();
         int columnas = this.vistaMatrices.tbl_MatrizA.getColumnCount();
-        double[][] matriz = new double[filas][columnas];
-        
-        for(int i = 0; i < filas; i++){
-            for(int j = 0; j < columnas; j++){
-                matriz[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizA.getModel().getValueAt(i, j).toString());
+        double[][] datosMatrizA = new double[filas][columnas];
+        try{
+            for(int i = 0; i < filas; i++){
+                for(int j = 0; j < columnas; j++){
+                    datosMatrizA[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizA.getModel().getValueAt(i, j).toString());
+                }
             }
+         }catch(NullPointerException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas o una celda de la matriz esta seleccionada, porfavor verifique sus datos"); 
         }
-        return matriz;
+        return datosMatrizA;
     }
     
     private double[][] recolectarDatosMatrizB(){
         int filas = this.vistaMatrices.tbl_MatrizB.getRowCount();
         int columnas = this.vistaMatrices.tbl_MatrizB.getColumnCount();
-        double[][] matriz = new double[filas][columnas];
-        
-        for(int i = 0; i < filas; i++){
+        double[][] datosMatrizB= new double[filas][columnas];
+        try{
+              for(int i = 0; i < filas; i++){
             for(int j = 0; j < columnas; j++){
-                matriz[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizB.getModel().getValueAt(i, j).toString());
+                datosMatrizB[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizB.getModel().getValueAt(i, j).toString());
             }
+          }
+        }catch(NullPointerException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz B estan llenas o una celda de la matriz esta seleccionada, porfavor verifique sus datos"); 
         }
-        return matriz;
+        return datosMatrizB;
     }
     
     private void mostrarMatrizResultado(double[][] matriz){
          int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
         int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
-        for(int i = 0; i < filas; i++){
-            for(int j = 0; j < columnas; j++){
-                this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
-            }
-        }
+            for(int i = 0; i < filas; i++){
+                for(int j = 0; j < columnas; j++){
+                    this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
+                }
+           }                
     }
     
     private void seleccionarOperacion(){

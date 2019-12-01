@@ -9,8 +9,8 @@ public class OperacionesBasicasMatrices {
         suma = new double[tamanio][tamanio];
         
         //Suma de las matrices posicion por poscicion
-        for(int i=0;i<matrizA.length;i++) {
-            for(int j=0;j<matrizA.length;j++) {
+        for(int i=0;i<tamanio;i++) {
+            for(int j=0;j<tamanio;j++) {
                 suma[i][j] = matrizA[i][j] + matrizB[i][j];    
             }
         }
