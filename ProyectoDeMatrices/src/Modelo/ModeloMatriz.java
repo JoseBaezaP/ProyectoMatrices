@@ -3,45 +3,104 @@ package Modelo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author josebaeza
+ */
 public class ModeloMatriz {
  
+    /**
+     *
+     */
     public DefaultTableModel tabla = new DefaultTableModel(); 
+
+    /**
+     *
+     */
     public DefaultTableModel MatrizA = new DefaultTableModel();
+
+    /**
+     *
+     */
     public DefaultTableModel MatrizB = new DefaultTableModel();
+
+    /**
+     *
+     */
     public DefaultTableModel MatrizResultante = new DefaultTableModel();
     
+    /**
+     *
+     * @return
+     */
     public DefaultTableModel getTabla() {
         return tabla;
     }
     
+    /**
+     *
+     * @param tabla
+     */
     public void setTabla(DefaultTableModel tabla) {
         this.tabla = tabla;
     }
     
+    /**
+     *
+     * @return
+     */
     public DefaultTableModel getMatrizA() {
         return MatrizA;
     }
     
+    /**
+     *
+     * @return
+     */
     public DefaultTableModel getMatrizB() {
         return MatrizB;
     }
     
+    /**
+     *
+     * @return
+     */
     public DefaultTableModel getMatrizResultante() {
         return MatrizResultante;
     }
     
+    /**
+     *
+     * @param MatrizA
+     */
     public void setMatrizA(DefaultTableModel MatrizA) {
         this.MatrizA = MatrizA;
     }
     
+    /**
+     *
+     * @param MatrizB
+     */
     public void setMatrizB(DefaultTableModel MatrizB) {
         this.MatrizB = MatrizB;
     }
     
+    /**
+     *
+     * @param MatrizResultante
+     */
     public void setMatrizResultante(DefaultTableModel MatrizResultante) {
         this.MatrizResultante = MatrizResultante;
     }
     
+    /**
+     *
+     * @param filaMatrizA
+     * @param columnaMatrizA
+     * @param filaMatrizB
+     * @param columnaMatrizB
+     * @param operacion
+     */
     public void Validacion(int filaMatrizA, int columnaMatrizA, int filaMatrizB, int columnaMatrizB, String operacion) {
         boolean sePuede;
         switch (operacion){
@@ -77,23 +136,46 @@ public class ModeloMatriz {
         }           
     }
     
+    /**
+     *
+     * @param fil
+     * @param col
+     */
     public void generarTabla(int fil,int col){
         
     }
     
+    /**
+     *
+     * @param fila
+     * @param columna
+     */
     public void generarMatrizA(int fila, int columna) {
         MatrizA.setColumnCount(columna);
         MatrizA.setRowCount(fila);  
     }
     
+    /**
+     *
+     * @param fila
+     * @param columna
+     */
     public void generarMatrizB(int fila, int columna) {
         MatrizB.setColumnCount(columna); 
         MatrizB.setRowCount(fila);
     }
     
+    /**
+     *
+     * @param filagenerarMatrizResultanteCramer
+     * @param columna
+     */
     public void generarMatrizResultado(int fila, int columna) {        
         MatrizResultante.setColumnCount(columna);
         MatrizResultante.setRowCount(fila); 
     }
-
+    public void generarMatrizResultanteCramer(int fila) {        
+        MatrizResultante.setColumnCount(fila);
+        MatrizResultante.setRowCount(1); 
+    }
 }

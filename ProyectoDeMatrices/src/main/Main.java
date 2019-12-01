@@ -10,7 +10,12 @@ import Controlador.CtrlMatrices;
  * @author josebaeza
  */
 public class Main {
-   public static void main(String[] args){
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args){
         
         
        CtrlMatrices not = new CtrlMatrices();
