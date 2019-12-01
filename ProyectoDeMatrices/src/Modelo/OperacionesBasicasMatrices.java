@@ -34,31 +34,29 @@ public class OperacionesBasicasMatrices {
      * @return
      */
     public double [][] multiplicacion(double [][] matrizA, double [][] matrizB){
-        int filaA = matrizA.length;
-        int filaB = matrizB.length;
-        int columnaA = matrizA[0].length;
-        int columnaB = matrizB[0].length;
-        double [][] mult;
-        mult = new double[filaA][columnaB];
+        int filasA = matrizA.length;
+        int filasB = matrizB.length;
+        int columnasA = matrizA[0].length;
+        int columnasB = matrizB[0].length;
+        double [][] matrizResultado;
+        matrizResultado = new double[filasA][columnasB];
 
         //inicializa la matriz para la multiplicación 
-        for(int i=0;i<filaB;i++) {
-            for(int j=0;j<columnaB;j++) { 
-                mult[i][j] = 0;
+        for(int i=0;i<filasB;i++) {
+            for(int j=0;j<columnasB;j++) { 
+                matrizResultado[i][j] = 0;
             }
         }
 
         //Realiza la multiplicacion 
-         for (int i = 0; i < filaA; i++) { // fila uno
-            for (int j = 0; j < columnaB; j++) { // columna dos
-                for (int k = 0; k < columnaA; k++) { // columna uno      
-                    mult[i][j] += matrizA[i][k] * matrizB[k][j]; 
+         for (int i = 0; i < filasA; i++) { // tamanio uno
+            for (int j = 0; j < columnasB; j++) { // i dos
+                for (int k = 0; k < columnasA; k++) { // i uno      
+                    matrizResultado[i][j] += matrizA[i][k] * matrizB[k][j]; 
                 }
             }
         }
-
-        return mult;
-         
+        return matrizResultado;
     }
     
     /**
@@ -67,24 +65,23 @@ public class OperacionesBasicasMatrices {
      * @param escalar
      * @return
      */
-    public double [][] multEscalar(double [][] matriz, double escalar){
+    public double [][] multiplicacionEscalar(double [][] matriz, double escalar){
 
         int filas = matriz.length;
         int columnas = matriz[0].length;
-        
+        double [][] matrizResultado = matriz;
 
         //Multiplica la matriz por el escalar
         for(int i=0;i<filas;i++) {
             for(int j=0;j<columnas;j++) {
-                matriz[i][j] = escalar*matriz[i][j];    
+                matrizResultado[i][j] = escalar*matrizResultado[i][j];    
             }
         }
-        return matriz;
+        return matrizResultado;
     }
     
-    
     //******************************************Calcular determinante*************************************************
-
+    
     /**
      *
      * @param matriz
@@ -100,9 +97,9 @@ public class OperacionesBasicasMatrices {
         }
         
         int signo = 1;
-        for (int columna = 0; columna < columnas; columna++) {
-            double[][] submatriz = getSubmatriz(matriz, filas, columnas, columna);
-            determinante = determinante + signo*matriz[0][columna]*calcularDeterminante(submatriz);
+        for (int i = 0; i < columnas; i++) {
+            double[][] submatriz = getSubmatriz(matriz, filas, columnas, i);
+            determinante = determinante + signo*matriz[0][i]*calcularDeterminante(submatriz);
             signo *= -1;
         }
         return determinante;
@@ -136,30 +133,28 @@ public class OperacionesBasicasMatrices {
      * @return
      */
     public double[][] metodoDeCramer(double [][] matrizA) {
-        double[][] matrizDeEcuaciones= new double[matrizA.length][matrizA.length];
-        matrizDeEcuaciones=generarMatrizEcuaciones(matrizA);    
-        double[][] Rcramer= new double[1][matrizA.length];    
-        double det = calcularDeterminante(matrizDeEcuaciones);
+        int tamanio = matrizA.length;
+        double[][] matrizDeEcuaciones = new double[tamanio][tamanio];
+        matrizDeEcuaciones = generarMatrizEcuaciones(matrizA);    
+        double[][] Rcramer = new double[1][tamanio];    
+        double determinante = calcularDeterminante(matrizDeEcuaciones);
 
-            if (det == 0) {
-                    JOptionPane.showMessageDialog(null,"No tiene solucion con" +
-                            " la regla de Cramer");
-                 return Rcramer;
-            }
-              double[] vectorDeSoluciones=new double[matrizA.length];
-            vectorDeSoluciones=generarVectorSoluciones(matrizA);
-
-            double detDelCoeficiente;
-
-            double matrizCoeficiente[][] = new double[matrizA.length][matrizA.length];
-            for (int i = 0; i < matrizA.length; i++) {
-                    matrizCoeficiente = sustituye(matrizDeEcuaciones,vectorDeSoluciones,i);
-                    detDelCoeficiente = calcularDeterminante(matrizCoeficiente);
-                    Rcramer[0][i]=(detDelCoeficiente/det);
-            }
+        if (determinante == 0) {
+            JOptionPane.showMessageDialog(null,"No tiene solucion con la regla de Cramer");
             return Rcramer;
-            
-          
+        }
+        double[] vectorDeSoluciones = new double[tamanio];
+        vectorDeSoluciones = generarVectorSoluciones(matrizA);
+
+        double detDelCoeficiente;
+
+        double matrizCoeficiente[][] = new double[tamanio][tamanio];
+        for (int i = 0; i < tamanio; i++) {
+            matrizCoeficiente = sustituye(matrizDeEcuaciones,vectorDeSoluciones,i);
+            detDelCoeficiente = calcularDeterminante(matrizCoeficiente);
+            Rcramer[0][i]=(detDelCoeficiente/determinante);
+        }
+        return Rcramer; 
     }
 
     /**
@@ -170,18 +165,18 @@ public class OperacionesBasicasMatrices {
      * @return
      */
     public double [][] sustituye(double matrizDeEcuaciones[][], double vectorDeSoluciones[], int pos) {
-            double matrizCoeficiente[][] = new double[matrizDeEcuaciones.length][matrizDeEcuaciones.length];
-            for (int i = 0; i < matrizDeEcuaciones.length; i++) {
-                    for(int j=0; j<matrizDeEcuaciones.length; j++){
-                            if(j == pos){
-                                    matrizCoeficiente[i][j] = vectorDeSoluciones[i];
-                            }
-                            else{
-                                    matrizCoeficiente[i][j] = matrizDeEcuaciones[i][j];
-                            }
-                    }
+        double matrizCoeficiente[][] = new double[matrizDeEcuaciones.length][matrizDeEcuaciones.length];
+        for (int i = 0; i < matrizDeEcuaciones.length; i++) {
+            for(int j = 0; j < matrizDeEcuaciones.length; j++){
+                if(j == pos){
+                    matrizCoeficiente[i][j] = vectorDeSoluciones[i];
+                }
+                else{
+                    matrizCoeficiente[i][j] = matrizDeEcuaciones[i][j];
+                }
             }
-            return matrizCoeficiente;
+        }
+        return matrizCoeficiente;
     }
 
     /**
@@ -190,15 +185,14 @@ public class OperacionesBasicasMatrices {
      * @return
      */
     public static double[][] generarMatrizEcuaciones(double[][] matriz){
-        int fila=matriz.length;
-        int columna=matriz[0].length;
-        double[][] matrizDeEcuaciones= new double[matriz.length][matriz.length];
-        for(int i=0;i<fila;i++){
-            for(int j=0;j<columna-1;j++){
-                matrizDeEcuaciones[i][j]=matriz[i][j];
+        int tamanio = matriz.length;
+        int columnas = matriz[0].length;
+        double[][] matrizDeEcuaciones = new double[tamanio][tamanio];
+        for(int i=0;i < tamanio; i++){
+            for(int j = 0; j < columnas-1; j++){
+                matrizDeEcuaciones[i][j] = matriz[i][j];
             }
         }
-        
         return matrizDeEcuaciones;
     }
 
@@ -208,13 +202,12 @@ public class OperacionesBasicasMatrices {
      * @return
      */
     public static double[] generarVectorSoluciones(double[][] matriz){
-        int fila=matriz.length;
-        int columna=matriz.length;
-        double[] vectorDeSoluciones= new double[matriz.length];
-        for(int i=0;i<fila;i++){
-            vectorDeSoluciones[i]=matriz[i][columna];
-        }
+        int tamanio = matriz.length;
+        double[] vectorDeSoluciones = new double[tamanio];
         
+        for(int i = 0; i < tamanio; i++){
+            vectorDeSoluciones[i] = matriz[i][tamanio];
+        }
         return vectorDeSoluciones;
     }
 }
