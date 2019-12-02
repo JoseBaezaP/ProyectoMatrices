@@ -111,25 +111,49 @@ public class ModeloMatriz {
     }
     
     /**
-     *<p>Metodo que valida que se cumplan las condiciones para que se pueda calcular la determinante y la regla de Cramer
+     *<p>Metodo que valida que se cumplan las condiciones para que se puedan reealizar las operaciones con una matriz
      * @param filas numero de filas de la matriz
      * @param columnas numero de columnas de la matriz
      * @param operacion es la operacion que se esta intentando realizar
      */
     public void validarOperacion(int filas, int columnas, String operacion){
+          boolean sePuede = filas == columnas; 
         switch (operacion){
-            case "Determinante":
-                boolean sePuede = filas == columnas; 
+            case "Determinante":         
                 if(sePuede){
                     generarMatrizA(filas, columnas);
                 } else {
                     JOptionPane.showMessageDialog(null,"La matriz debe ser cuadradada"); 
                 }
                 break;
+            case "MultEsc":
+                    generarMatrizA(filas, columnas);
+                     generarMatrizResultado(filas, columnas);
+                break;
             case "SistEcCramer":
+                if(!sePuede){
                     generarMatrizA(filas, columnas);
                     generarMatrizResultado(1, filas);
+                    } else {
+                    JOptionPane.showMessageDialog(null,"La matriz no puede ser cuadradada"); 
+                }
                     break;
+            case "SistEc":
+                  if(!sePuede){
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(filas, columnas);
+                    break;
+                     } else {
+                    JOptionPane.showMessageDialog(null,"La matriz no puede ser cuadradada"); 
+                }
+            case "InvGauss":         
+                if(sePuede){
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(filas, columnas);
+                } else {
+                    JOptionPane.showMessageDialog(null,"La matriz debe ser cuadradada"); 
+                }
+                break;
         }
     }
     /**
@@ -166,9 +190,8 @@ public class ModeloMatriz {
      * @param fila numero de filas de la matriz
      * @param columna numero de columnas de la matriz
      */
-    public void generarMatrizResultado(int fila, int columna) {        
+    public void generarMatrizResultado(int fila, int columna) {
         MatrizResultante.setColumnCount(columna);
         MatrizResultante.setRowCount(fila); 
     }
-    
 }

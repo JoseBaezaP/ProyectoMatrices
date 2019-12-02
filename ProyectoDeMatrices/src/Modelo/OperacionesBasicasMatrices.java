@@ -130,7 +130,7 @@ public class OperacionesBasicasMatrices {
         }
         return submatriz;
     }
-    //**************************************************************************************************************
+    //**************************************************Metodo De Cramer*****************************************************
 
     /**
      * <p>Metodo que calcuala la solucion de un sistema de ecuaciones por el metodo de Cramer
@@ -216,104 +216,126 @@ public class OperacionesBasicasMatrices {
         }
         return vectorDeSoluciones;
     }
-    
-    //***********************************************Metodo Gauss-Jordan*************************************************
-    
-    
-     public double[][] invert(double a[][])         {
 
-            int n = a.length;
-            double x[][] = new double[n][n];
-            double b[][] = new double[n][n];
-            int index[] = new int[n];
-            for (int i=0; i<n; ++i)
-                b[i][i] = 1;
-
-     // Transform the matrix into an upper triangle
-
-            gaussian(a, index);
-
-     // Update the matrix b[i][j] with the ratios stored
-            for (int i=0; i<n-1; ++i)
-                for (int j=i+1; j<n; ++j)
-                    for (int k=0; k<n; ++k)
-                        b[index[j]][k]
-                        	    -= a[index[j]][i]*b[index[i]][k];
-
-     
-     // Perform backward substitutions
-            for (int i=0; i<n; ++i)             {
-                x[n-1][i] = b[index[n-1]][i]/a[index[n-1]][n-1];
-                for (int j=n-2; j>=0; --j)                 {
-                    x[j][i] = b[index[j]][i];
-                    for (int k=j+1; k<n; ++k)
-                    {
-                        x[j][i] -= a[index[j]][k]*x[k][i];
-                    }
-
-                    x[j][i] /= a[index[j]][j];
-                }
-            }
-            return x;
+    /**
+     * <p>Metodo que calcula la matriz inversa de una matriz inicial dada
+     * @param matriz matriz de double que contiene los valores de los cuales se calculara la inversa
+     * @return matrizResultado matriz de double que contiene los valores de la matriz invertida con respecto a la matriz original
+     */
+    public double[][] inversaGaussJordan(double matriz[][]){
+        int tamanio = matriz.length;
+        double matrizResultado[][] = new double[tamanio][tamanio];
+        double matrizAuxiliar[][] = new double[tamanio][tamanio];
+        int[] indice = new int[tamanio];
+        for (int i = 0; i < tamanio; ++i){
+            matrizAuxiliar[i][i] = 1;
         }
 
-    // Method to carry out the partial-pivoting Gaussian
-    // elimination.  Here index[] stores pivoting order.
+        pivotar(matriz, indice);
 
-        public void gaussian(double a[][], int index[])  {
-
-            int n = index.length;
-            double c[] = new double[n];
-
-     // Initialize the index
-            for (int i=0; i<n; ++i)
-                index[i] = i;
-
-     // Find the rescaling factors, one from each row
-            for (int i=0; i<n; ++i) {
-                double c1 = 0;
-                for (int j=0; j<n; ++j) {
-                    double c0 = Math.abs(a[i][j]);
-                    if (c0 > c1) c1 = c0;
-                }
-                c[i] = c1;
-            }
-
-     // Search the pivoting element from each column
-            int k = 0;
-            for (int j=0; j<n-1; ++j) {
-                double pi1 = 0;
-                for (int i=j; i<n; ++i)  {
-
-                    double pi0 = Math.abs(a[index[i]][j]);
-                    pi0 /= c[index[i]];
-                    if (pi0 > pi1) {
-                        pi1 = pi0;
-                        k = i;
-                    }
-                }
-
-     
-       // Interchange rows according to the pivoting order
-                int itmp = index[j];
-                index[j] = index[k];
-                index[k] = itmp;
-                for (int i=j+1; i<n; ++i) {
-                    double pj = a[index[i]][j]/a[index[j]][j];
-
-     // Record pivoting ratios below the diagonal
-                    a[index[i]][j] = pj;
-
-     // Modify other elements accordingly
-                    for (int l=j+1; l<n; ++l)
-                        a[index[i]][l] -= pj*a[index[j]][l];
+        for (int i = 0; i < tamanio-1; ++i){
+            for (int j = i+1; j < tamanio; ++j){
+                for (int k = 0; k < tamanio; ++k){
+                    matrizAuxiliar[indice[j]][k] -= matriz[indice[j]][i]*matrizAuxiliar[indice[i]][k];
                 }
             }
         }
+
+        for (int i = 0; i < tamanio; ++i) {
+            matrizResultado[tamanio-1][i] = matrizAuxiliar[indice[tamanio-1]][i]/matriz[indice[tamanio-1]][tamanio-1];
+            for (int j = tamanio-2; j >= 0; --j) {
+                matrizResultado[j][i] = matrizAuxiliar[indice[j]][i];
+                for (int k = j+1; k < tamanio; ++k){
+                    matrizResultado[j][i] -= matriz[indice[j]][k]*matrizResultado[k][i];
+                }
+                matrizResultado[j][i] /= matriz[indice[j]][j];
+            }
+        }
+        return matrizResultado;
+    }
+
+    /**
+     * <p>Metodo que identifica e intercambia pivotes para poder invertir la matriz
+     * @param matriz matriz de double de la cual se quieren identificar e intercambiar pivotes para calcular su inversa
+     * @param indice vetor que guarda la cantidad de indices de la matriz
+     */
+    public void pivotar(double matriz[][], int[] indice)  {
+
+        int tamanio = indice.length;
+        double factores[] = new double[tamanio];
+
+        for (int i=0; i<tamanio; ++i){
+            indice[i] = i;
+        }
+        
+        for (int i=0; i<tamanio; ++i) {
+            double factor = 0;
+            for (int j=0; j<tamanio; ++j) {
+                double posibleFactor = Math.abs(matriz[i][j]);
+                if (posibleFactor > factor){
+                    factor = posibleFactor;
+                }
+            }
+            factores[i] = factor;
+        }
+
+        int k = 0;
+        for (int j = 0; j < tamanio-1; ++j) {
+            double pivote = 0;
+            for (int i = j; i < tamanio; ++i)  {
+
+                double posiblePivote = Math.abs(matriz[indice[i]][j]);
+                posiblePivote /= factores[indice[i]];
+                if (posiblePivote > pivote) {
+                    pivote = posiblePivote;
+                    k = i;
+                }
+            }
+ 
+            int intercambioPivote = indice[j];
+            indice[j] = indice[k];
+            indice[k] = intercambioPivote;
+            for (int i = j+1; i < tamanio; ++i) {
+                double valor = matriz[indice[i]][j]/matriz[indice[j]][j];
+
+                matriz[indice[i]][j] = valor;
+
+                for (int l = j+1; l < tamanio; ++l){
+                    matriz[indice[i]][l] -= valor*matriz[indice[j]][l];
+                }
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
+    /**
+     * <p>Metodo que resuelve un sistema de ecuaciones usando una matriz
+     * @param matrizA matriz de double que contiene las ecuaciones a resolver
+     * @return matrizResultado matriz de double con el resultado del sistema de ecuacion dado el caso de que tenga solucion
+     */
+    public double[][] resolverSistemaEcuacion(double [][] matrizA) {
+        double[][] matrizResultante=matrizA;
+        for (int filaDePivote = 0; filaDePivote < matrizA.length; filaDePivote++){
+            double valorDePivote = matrizResultante[filaDePivote][filaDePivote];
+
+            for (int i = 0; i < matrizA[0].length; i++){
+               matrizResultante[filaDePivote][i] = matrizResultante[filaDePivote][i] / valorDePivote;
+            }
+
+            int filaAProcesar = filaDePivote + 1;
+            if (filaAProcesar == matrizA.length) {filaAProcesar = 0;}
+            for (int fila = 0; fila < matrizA.length - 1; fila++){                
+                double valorDelNuevoPivote = matrizResultante[filaAProcesar][filaDePivote];
+
+                for (int c = filaDePivote; c < matrizA[0].length; c++)
+                {
+                    matrizResultante[filaAProcesar][c] = matrizResultante[filaAProcesar][c] - (valorDelNuevoPivote * matrizResultante[filaDePivote][c]);
+                }
+                if (filaAProcesar == matrizA.length - 1) filaAProcesar = 0;
+                else filaAProcesar++; 
+            }
+        }
+        return matrizResultante;
+    }
+
 }
+
