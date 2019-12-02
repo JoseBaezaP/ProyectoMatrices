@@ -105,6 +105,12 @@ public class ModeloMatriz {
         }           
     }
     
+    /**
+     *
+     * @param filas
+     * @param columnas
+     * @param operacion
+     */
     public void validarOperacion(int filas, int columnas, String operacion){
           boolean sePuede = filas == columnas; 
         switch (operacion){

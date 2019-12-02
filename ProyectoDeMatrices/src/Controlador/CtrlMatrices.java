@@ -122,8 +122,8 @@ public class CtrlMatrices implements ActionListener{
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
                 break;
             case "InvGauss":
-                 modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
-                                      Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
+                modelo.generarMatrizA(filasMatrizA, columnasMatrizA);
+                modelo.generarMatrizResultado(filasMatrizA, columnasMatrizA);
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
                 break;

@@ -125,7 +125,7 @@ public class OperacionesBasicasMatrices {
         }
         return submatriz;
     }
-    //**************************************************************************************************************
+    //**************************************************Metodo De Cramer*****************************************************
 
     /**
      *
@@ -213,6 +213,12 @@ public class OperacionesBasicasMatrices {
     
     //***********************************************Metodo Gauss-Jordan*************************************************
 
+    /**
+     *
+     * @param matriz
+     * @return
+     */
+
     public double[][] inversaGaussJordan(double matriz[][]){
         int tamanio = matriz.length;
         double matrizResultado[][] = new double[tamanio][tamanio];
@@ -222,12 +228,8 @@ public class OperacionesBasicasMatrices {
             matrizAuxiliar[i][i] = 1;
         }
 
-
- // Transform the matrix into an upper triangle
-
         pivotar(matriz, indice);
 
- // Update the matrix b[i][j] with the ratios stored
         for (int i = 0; i < tamanio-1; ++i){
             for (int j = i+1; j < tamanio; ++j){
                 for (int k = 0; k < tamanio; ++k){
@@ -236,7 +238,6 @@ public class OperacionesBasicasMatrices {
             }
         }
 
- // Perform backward substitutions
         for (int i = 0; i < tamanio; ++i) {
             matrizResultado[tamanio-1][i] = matrizAuxiliar[indice[tamanio-1]][i]/matriz[indice[tamanio-1]][tamanio-1];
             for (int j = tamanio-2; j >= 0; --j) {
@@ -250,21 +251,21 @@ public class OperacionesBasicasMatrices {
         return matrizResultado;
     }
 
-    // Method to carry out the partial-pivoting Gaussian
-    // elimination.  Here indice[] stores pivoting order.
-
+    /**
+     *
+     * @param matriz
+     * @param indice
+     */
     public void pivotar(double matriz[][], int[] indice)  {
 
         int tamanio = indice.length;
         double factores[] = new double[tamanio];
 
- // Initialize the indice
         for (int i=0; i<tamanio; ++i){
             indice[i] = i;
         }
             
 
- // Find the rescaling factors, one from each row
         for (int i=0; i<tamanio; ++i) {
             double factor = 0;
             for (int j=0; j<tamanio; ++j) {
@@ -275,7 +276,7 @@ public class OperacionesBasicasMatrices {
             }
             factores[i] = factor;
         }
-    // Search the pivoting element from each column
+
         int k = 0;
         for (int j = 0; j < tamanio-1; ++j) {
             double pivote = 0;
@@ -288,15 +289,15 @@ public class OperacionesBasicasMatrices {
                     k = i;
                 }
             }
-   // Interchange rows according to the pivoting order
+ 
             int intercambioPivote = indice[j];
             indice[j] = indice[k];
             indice[k] = intercambioPivote;
             for (int i = j+1; i < tamanio; ++i) {
                 double valor = matriz[indice[i]][j]/matriz[indice[j]][j];
- // Record pivoting ratios below the diagonal
+
                 matriz[indice[i]][j] = valor;
- // Modify other elements accordingly
+
                 for (int l = j+1; l < tamanio; ++l){
                     matriz[indice[i]][l] -= valor*matriz[indice[j]][l];
                 }
@@ -305,6 +306,11 @@ public class OperacionesBasicasMatrices {
     }
      //***********************************************Sistema de ecuaciones*************************************************
     
+    /**
+     *
+     * @param matrizA
+     * @return
+     */
     public double[][] resolverSistemaEcuacion(double [][] matrizA) {
         double[][] matrizResultante=matrizA;
             for (int filaDePivote = 0; filaDePivote < matrizA.length; filaDePivote++)
