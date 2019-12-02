@@ -307,32 +307,32 @@ public class OperacionesBasicasMatrices {
      //***********************************************Sistema de ecuaciones*************************************************
     
     public double[][] resolverSistemaEcuacion(double [][] matrizA) {
-        double[][] matrix=matrizA;
-            for (int fpivot = 0; fpivot < matrizA.length; fpivot++)
+        double[][] matrizResultante=matrizA;
+            for (int filaDePivote = 0; filaDePivote < matrizA.length; filaDePivote++)
             {
  
-                double nor = matrix[fpivot][fpivot];
+                double valorDePivote = matrizResultante[filaDePivote][filaDePivote];
  
                 for (int i = 0; i < matrizA[0].length; i++)
                 {
-                    matrix[fpivot][i] = matrix[fpivot][i] / nor;
+                   matrizResultante[filaDePivote][i] = matrizResultante[filaDePivote][i] / valorDePivote;
                 }
  
-                int f = fpivot + 1;
-                if (f == matrizA.length) {f = 0;}
+                int filaAProcesar = filaDePivote + 1;
+                if (filaAProcesar == matrizA.length) {filaAProcesar = 0;}
                 for (int fila = 0; fila < matrizA.length - 1; fila++)
                 {                
-                    double k = matrix[f][fpivot];
+                    double valorDelNuevoPivote = matrizResultante[filaAProcesar][filaDePivote];
  
-                    for (int c = fpivot; c < matrizA[0].length; c++)
+                    for (int c = filaDePivote; c < matrizA[0].length; c++)
                     {
-                        matrix[f][c] = matrix[f][c] - (k * matrix[fpivot][c]);
+                        matrizResultante[filaAProcesar][c] = matrizResultante[filaAProcesar][c] - (valorDelNuevoPivote * matrizResultante[filaDePivote][c]);
                     }
-                    if (f == matrizA.length - 1) f = 0;
-                    else f++; 
+                    if (filaAProcesar == matrizA.length - 1) filaAProcesar = 0;
+                    else filaAProcesar++; 
                 }
             }
          
-            return matrix;
+            return matrizResultante;
         }
 }
