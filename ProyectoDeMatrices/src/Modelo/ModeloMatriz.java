@@ -105,10 +105,16 @@ public class ModeloMatriz {
         }           
     }
     
+    /**
+     *
+     * @param filas
+     * @param columnas
+     * @param operacion
+     */
     public void validarOperacion(int filas, int columnas, String operacion){
+          boolean sePuede = filas == columnas; 
         switch (operacion){
-            case "Determinante":
-                boolean sePuede = filas == columnas; 
+            case "Determinante":         
                 if(sePuede){
                     generarMatrizA(filas, columnas);
                 } else {
@@ -116,9 +122,21 @@ public class ModeloMatriz {
                 }
                 break;
             case "SistEcCramer":
-                generarMatrizA(filas, columnas);
-                generarMatrizResultado(1, filas);
-                break;
+                if(!sePuede){
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(1, filas);
+                    } else {
+                    JOptionPane.showMessageDialog(null,"La matriz no puede ser cuadradada"); 
+                }
+                    break;
+            case "SistEc":
+                  if(!sePuede){
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(filas, columnas);
+                    break;
+                     } else {
+                    JOptionPane.showMessageDialog(null,"La matriz no puede ser cuadradada"); 
+                }
         }
     }
     /**
