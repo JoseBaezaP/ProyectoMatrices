@@ -122,14 +122,12 @@ public class CtrlMatrices implements ActionListener{
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
                 break;
             case "InvGauss":
-                break;
-        }     
-            if(operacionUnaMatriz){
-                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
+                 modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
                                       Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            }
+                break;
+        }     
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Debe ingresar datos numericos en los campos de Fila(s) y Columna(s)");
         }
@@ -180,8 +178,8 @@ public class CtrlMatrices implements ActionListener{
                     datosMatrizA[i][j] = Double.parseDouble(this.vistaMatrices.tbl_MatrizA.getModel().getValueAt(i, j).toString());
                 }
             }
-        } catch(NullPointerException exception){
-            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas o una celda de la matriz esta seleccionada, por favor verifique sus datos"); 
+        } catch(NullPointerException | NumberFormatException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas, una celda de la matriz esta seleccionada o hay datos no númericos, por favor verifique sus datos"); 
         }
         return datosMatrizA;
     }
@@ -196,15 +194,17 @@ public class CtrlMatrices implements ActionListener{
                     datosMatrizB[i][j] = Double.parseDouble(this.vistaMatrices.tbl_MatrizB.getModel().getValueAt(i, j).toString());
                 }
             }
-        }catch(NullPointerException exception){
-            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz B estan llenas o una celda de la matriz esta seleccionada, por favor verifique sus datos"); 
+        }catch(NullPointerException | NumberFormatException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas, una celda de la matriz esta seleccionada o hay datos no númericos, por favor verifique sus datos"); 
         }
         return datosMatrizB;
     }
     
     private void mostrarMatrizResultado(double[][] matriz){
         int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
+        System.out.println("F: " + filas);
         int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
+        System.out.println("C: " + columnas);
         for(int i = 0; i < filas; i++){
             for(int j = 0; j < columnas; j++){
                 this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
@@ -239,8 +239,10 @@ public class CtrlMatrices implements ActionListener{
                 mostrarMatrizResultado(matrizResultadoCra);
                 break;
             case "InvGauss":
+                double[][] matrizResultadoInv = operaciones.inversaGaussJordan(recolectarDatosMatrizA());
+            mostrarMatrizResultado(matrizResultadoInv);
                 break;
-        }     
+        }            
     }
     
     /**
@@ -292,4 +294,5 @@ public class CtrlMatrices implements ActionListener{
                 break;
         }
     }
+    
 }
