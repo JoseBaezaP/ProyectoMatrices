@@ -264,8 +264,7 @@ public class OperacionesBasicasMatrices {
         for (int i=0; i<tamanio; ++i){
             indice[i] = i;
         }
-            
-
+        
         for (int i=0; i<tamanio; ++i) {
             double factor = 0;
             for (int j=0; j<tamanio; ++j) {
@@ -304,7 +303,7 @@ public class OperacionesBasicasMatrices {
             }
         }
     }
-     //***********************************************Sistema de ecuaciones*************************************************
+    //***********************************************Sistema de ecuaciones*************************************************
     
     /**
      *
@@ -313,33 +312,28 @@ public class OperacionesBasicasMatrices {
      */
     public double[][] resolverSistemaEcuacion(double [][] matrizA) {
         double[][] matrizResultante=matrizA;
-            for (int filaDePivote = 0; filaDePivote < matrizA.length; filaDePivote++)
-            {
- 
-                double valorDePivote = matrizResultante[filaDePivote][filaDePivote];
- 
-                for (int i = 0; i < matrizA[0].length; i++)
-                {
-                   matrizResultante[filaDePivote][i] = matrizResultante[filaDePivote][i] / valorDePivote;
-                }
- 
-                int filaAProcesar = filaDePivote + 1;
-                if (filaAProcesar == matrizA.length) {filaAProcesar = 0;}
-                for (int fila = 0; fila < matrizA.length - 1; fila++)
-                {                
-                    double valorDelNuevoPivote = matrizResultante[filaAProcesar][filaDePivote];
- 
-                    for (int c = filaDePivote; c < matrizA[0].length; c++)
-                    {
-                        matrizResultante[filaAProcesar][c] = matrizResultante[filaAProcesar][c] - (valorDelNuevoPivote * matrizResultante[filaDePivote][c]);
-                    }
-                    if (filaAProcesar == matrizA.length - 1) filaAProcesar = 0;
-                    else filaAProcesar++; 
-                }
+        for (int filaDePivote = 0; filaDePivote < matrizA.length; filaDePivote++){
+            double valorDePivote = matrizResultante[filaDePivote][filaDePivote];
+
+            for (int i = 0; i < matrizA[0].length; i++){
+               matrizResultante[filaDePivote][i] = matrizResultante[filaDePivote][i] / valorDePivote;
             }
-         
-            return matrizResultante;
+
+            int filaAProcesar = filaDePivote + 1;
+            if (filaAProcesar == matrizA.length) {filaAProcesar = 0;}
+            for (int fila = 0; fila < matrizA.length - 1; fila++){                
+                double valorDelNuevoPivote = matrizResultante[filaAProcesar][filaDePivote];
+
+                for (int c = filaDePivote; c < matrizA[0].length; c++)
+                {
+                    matrizResultante[filaAProcesar][c] = matrizResultante[filaAProcesar][c] - (valorDelNuevoPivote * matrizResultante[filaDePivote][c]);
+                }
+                if (filaAProcesar == matrizA.length - 1) filaAProcesar = 0;
+                else filaAProcesar++; 
+            }
         }
+        return matrizResultante;
+    }
 
 }
 

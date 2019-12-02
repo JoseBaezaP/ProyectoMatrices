@@ -126,11 +126,10 @@ public class CtrlMatrices implements ActionListener{
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
                 break;
         }     
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Debe ingresar datos numericos en los campos de Fila(s) y Columna(s)");
-        }
-        
-        
+        } 
     }
     
     /**
@@ -290,5 +289,4 @@ public class CtrlMatrices implements ActionListener{
                 break;
         }
     }
-    
 }
