@@ -15,6 +15,7 @@ public class CtrlMatrices implements ActionListener{
     
     frmVistaMatrices vistaMatrices;
     OperacionesBasicasMatrices operaciones = new OperacionesBasicasMatrices();
+    String valorRadioButton="Suma";
     
     /**
      *
@@ -82,44 +83,50 @@ public class CtrlMatrices implements ActionListener{
             ModeloMatriz modelo = new ModeloMatriz();
             int filasMatrizA = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText());
             int columnasMatrizA = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText());
-            boolean operacionUnaMatriz = this.vistaMatrices.rb_InvGauss.isSelected() || this.vistaMatrices.rb_MultEsc.isSelected();
-            
-            if(operacionUnaMatriz){
-                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
-                                      Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            }
-              if(this.vistaMatrices.rb_Suma.isSelected() == true){
-                int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
+            boolean operacionUnaMatriz = this.vistaMatrices.rb_InvGauss.isSelected();
+             switch(valorRadioButton){
+            case "Suma":
+                 int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
                 int columnasMatrizB = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
                 modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB,"Suma");
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            }
-            
-            if(this.vistaMatrices.rb_Multiplicar.isSelected() == true){
-                int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
-                int columnasMatrizB = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
-                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB,"Multiplicacion");
+                break;
+            case "MultEsc":
+                double[][] matrizResultadoEsc = operaciones.multiplicacionEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
+                mostrarMatrizResultado(matrizResultadoEsc);
+                mostrarElementosUnaMatriz();
+                break;
+            case "Multiplicacion":
+                int filasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
+                int columnasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
+                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizBMul, columnasMatrizBMul,"Multiplicacion");
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            } 
-            if(this.vistaMatrices.rb_Determinante.isSelected()){
+                break;
+            case "SistEc":
+                modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEc");
+                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                break;
+            case "Determinante":
                 modelo.validarOperacion(filasMatrizA, columnasMatrizA, "Determinante");
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            }
-            
-            if(this.vistaMatrices.rb_SistEcCramer.isSelected()){
-                modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEcCramer");
+                break;
+            case "SistEcCramer":
+                 modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEcCramer");
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-            }
-              if(this.vistaMatrices.rb_SistEc.isSelected()){
-                modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEc");
+                break;
+            case "InvGauss":
+                break;
+        }     
+            if(operacionUnaMatriz){
+                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
+                                      Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
@@ -206,42 +213,34 @@ public class CtrlMatrices implements ActionListener{
     }
     
     private void seleccionarOperacion(){
-        
-        if(this.vistaMatrices.rb_Suma.isSelected() == true){
-            double[][] matrizResultado = operaciones.suma(recolectarDatosMatrizA(), recolectarDatosMatrizB());
-            mostrarMatrizResultado(matrizResultado);
-        }
-        
-        if(this.vistaMatrices.rb_MultEsc.isSelected() == true){
-            double[][] matrizResultado = operaciones.multiplicacionEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
-            mostrarMatrizResultado(matrizResultado);
-        }
-        
-        if(this.vistaMatrices.rb_Multiplicar.isSelected() == true){
-            double[][] matrizResultado = operaciones.multiplicacion(recolectarDatosMatrizA(), recolectarDatosMatrizB());
-            mostrarMatrizResultado(matrizResultado);
-        }
-        
-        if(this.vistaMatrices.rb_SistEc.isSelected() == true){
-            double[][]matrizResultado = operaciones.resolverSistemaEcuacion(recolectarDatosMatrizA());
-            mostrarMatrizResultado(matrizResultado);
-        }
-        
-        if(this.vistaMatrices.rb_Determinante.isSelected() == true){
-            double determinante = operaciones.calcularDeterminante(recolectarDatosMatrizA());
-            this.vistaMatrices.txt_Determinante.setText(String.valueOf(determinante));
-        }
-        
-        if(this.vistaMatrices.rb_SistEcCramer.isSelected() == true){
-            double[][] matrizResultado = operaciones.metodoDeCramer(recolectarDatosMatrizA());
-            mostrarMatrizResultado(matrizResultado);
-        }
-        if(this.vistaMatrices.rb_InvGauss.isSelected() == true){
-            System.out.println("here");
-            double[][] matrizResultado = operaciones.invert(recolectarDatosMatrizA());
-            mostrarMatrizResultado(matrizResultado);
-            System.out.println("not here");
-        }
+       switch(valorRadioButton){
+            case "Suma":
+                double[][] matrizResultado = operaciones.suma(recolectarDatosMatrizA(), recolectarDatosMatrizB());
+                mostrarMatrizResultado(matrizResultado);
+                break;
+            case "MultEsc":
+                double[][] matrizResultadoEsc = operaciones.multiplicacionEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
+                mostrarMatrizResultado(matrizResultadoEsc);
+                break;
+            case "Multiplicacion":
+                double[][] matrizResultadoMul = operaciones.multiplicacion(recolectarDatosMatrizA(), recolectarDatosMatrizB());
+                mostrarMatrizResultado(matrizResultadoMul);
+                break;
+            case "SistEc":
+               double[][]matrizResultadoSisEc = operaciones.resolverSistemaEcuacion(recolectarDatosMatrizA());
+                mostrarMatrizResultado(matrizResultadoSisEc);
+                break;
+            case "Determinante":
+                double determinante = operaciones.calcularDeterminante(recolectarDatosMatrizA());
+                this.vistaMatrices.txt_Determinante.setText(String.valueOf(determinante));
+                break;
+            case "SistEcCramer":
+               double[][] matrizResultadoCra = operaciones.metodoDeCramer(recolectarDatosMatrizA());
+                mostrarMatrizResultado(matrizResultadoCra);
+                break;
+            case "InvGauss":
+                break;
+        }     
     }
     
     /**
@@ -252,20 +251,25 @@ public class CtrlMatrices implements ActionListener{
     public void actionPerformed(ActionEvent event) {  
         switch(event.getActionCommand()){
             case "Suma":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosDosMatrices();
                 break;
             case "MultEsc":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosUnaMatriz();
                 this.vistaMatrices.txt_Escalar.setVisible(true);
                 this.vistaMatrices.lb_Escalar.setVisible(true);
                 break;
             case "Multiplicacion":
+                valorRadioButton=event.getActionCommand();
                    mostrarElementosDosMatrices();
                 break;
             case "SistEc":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosUnaMatriz();
                 break;
             case "Determinante":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosUnaMatriz();
                 this.vistaMatrices.txt_Determinante.setVisible(true);
                 this.vistaMatrices.lb_Determinante.setVisible(true);
@@ -273,9 +277,11 @@ public class CtrlMatrices implements ActionListener{
                 this.vistaMatrices.tbl_Resultado.setVisible(false);
                 break;
             case "SistEcCramer":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosUnaMatriz();
                 break;
             case "InvGauss":
+                valorRadioButton=event.getActionCommand();
                 mostrarElementosUnaMatriz();
                 break;
             case "Generar":
