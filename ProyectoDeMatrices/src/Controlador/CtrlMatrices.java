@@ -85,8 +85,8 @@ public class CtrlMatrices implements ActionListener{
             boolean operacionUnaMatriz = this.vistaMatrices.rb_SistEc.isSelected() || this.vistaMatrices.rb_InvGauss.isSelected() || this.vistaMatrices.rb_MultEsc.isSelected();
             
             if(operacionUnaMatriz){
-                modelo.generarMatrizA(Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText()),
-                                      Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText()));
+                modelo.generarMatrizA(filasMatrizA, columnasMatrizA);
+                modelo.generarMatrizResultado(filasMatrizA, columnasMatrizA);
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
             }
@@ -106,7 +106,7 @@ public class CtrlMatrices implements ActionListener{
             if(this.vistaMatrices.rb_Suma.isSelected() == true){
                 int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
                 int columnasMatrizB = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
-                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB,"Suma");
+                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB, "Suma");
                 this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
                 this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
                 this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
@@ -170,8 +170,8 @@ public class CtrlMatrices implements ActionListener{
                     datosMatrizA[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizA.getModel().getValueAt(i, j).toString());
                 }
             }
-        } catch(NullPointerException exception){
-            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas o una celda de la matriz esta seleccionada, por favor verifique sus datos"); 
+        } catch(NullPointerException | NumberFormatException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas, una celda de la matriz esta seleccionada o hay datos no númericos, por favor verifique sus datos"); 
         }
         return datosMatrizA;
     }
@@ -186,15 +186,17 @@ public class CtrlMatrices implements ActionListener{
                     datosMatrizB[i][j] = Integer.parseInt(this.vistaMatrices.tbl_MatrizB.getModel().getValueAt(i, j).toString());
                 }
             }
-        }catch(NullPointerException exception){
-            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz B estan llenas o una celda de la matriz esta seleccionada, por favor verifique sus datos"); 
+        }catch(NullPointerException | NumberFormatException exception){
+            JOptionPane.showMessageDialog(null,"No todas las celdas de la Matriz A estan llenas, una celda de la matriz esta seleccionada o hay datos no númericos, por favor verifique sus datos"); 
         }
         return datosMatrizB;
     }
     
     private void mostrarMatrizResultado(double[][] matriz){
         int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
+        System.out.println("F: " + filas);
         int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
+        System.out.println("C: " + columnas);
         for(int i = 0; i < filas; i++){
             for(int j = 0; j < columnas; j++){
                 this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
@@ -236,10 +238,8 @@ public class CtrlMatrices implements ActionListener{
         }
         
         if(this.vistaMatrices.rb_InvGauss.isSelected() == true){
-            System.out.println("here");
-            double[][] matrizResultado = operaciones.invert(recolectarDatosMatrizA());
+            double[][] matrizResultado = operaciones.inversaGaussJordan(recolectarDatosMatrizA());
             mostrarMatrizResultado(matrizResultado);
-            System.out.println("not here");
         }
     }
     
@@ -259,7 +259,7 @@ public class CtrlMatrices implements ActionListener{
                 this.vistaMatrices.lb_Escalar.setVisible(true);
                 break;
             case "Multiplicacion":
-                   mostrarElementosDosMatrices();
+                mostrarElementosDosMatrices();
                 break;
             case "SistEc":
                 mostrarElementosUnaMatriz();
@@ -285,4 +285,5 @@ public class CtrlMatrices implements ActionListener{
                 break;
         }
     }
+    
 }

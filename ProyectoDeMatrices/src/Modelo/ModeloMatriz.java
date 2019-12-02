@@ -116,9 +116,9 @@ public class ModeloMatriz {
                 }
                 break;
             case "SistEcCramer":
-                    generarMatrizA(filas, columnas);
-                    generarMatrizResultado(1, filas);
-                    break;
+                generarMatrizA(filas, columnas);
+                generarMatrizResultado(1, filas);
+                break;
         }
     }
     /**
@@ -155,9 +155,8 @@ public class ModeloMatriz {
      * @param fila
      * @param columna
      */
-    public void generarMatrizResultado(int fila, int columna) {        
+    public void generarMatrizResultado(int fila, int columna) {
         MatrizResultante.setColumnCount(columna);
         MatrizResultante.setRowCount(fila); 
     }
-    
 }
