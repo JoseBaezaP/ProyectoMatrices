@@ -1,17 +1,21 @@
 package Modelo;
 import javax.swing.JOptionPane;
-
 /**
+ * Clase OperacionesBasicasMatrices clase que realiza las operaciones basicas con las matrices dadas.
  *
+ * @author carlosavila
+ * @author leonardohernandez
  * @author josebaeza
+ * @author nicolasgala
+ * @version 1.0
  */
 public class OperacionesBasicasMatrices {
     
     /**
-     *
-     * @param matrizA
-     * @param matrizB
-     * @return
+     * <p>Metodo que suma 2 matrices poscicion por poscicion y devuelve el resultado en una nueva matriz
+     * @param matrizA matriz de double que se sumara con la matrizB
+     * @param matrizB matriz de double que se sumara con la matrizA
+     * @return suma matriz de double con el resultado de la suma entre la matrizA y matrizB
      */
     public double[][] suma(double[][] matrizA, double [][] matrizB){
         double [][]suma;
@@ -28,10 +32,10 @@ public class OperacionesBasicasMatrices {
     }
     
     /**
-     *
-     * @param matrizA
-     * @param matrizB
-     * @return
+     * <p>Metodo que multiplica 2 matrices y devuelve el resultado en una nueva matriz
+     * @param matrizA matriz de double que se multiplicara con la matrizB
+     * @param matrizB matriz de double que se multiplicara con la matrizA
+     * @return matrizResultado matriz de double con el resultado de la multiplicacion entre la matrizA y matrizB
      */
     public double [][] multiplicacion(double [][] matrizA, double [][] matrizB){
         int filasA = matrizA.length;
@@ -60,10 +64,10 @@ public class OperacionesBasicasMatrices {
     }
     
     /**
-     *
-     * @param matriz
-     * @param escalar
-     * @return
+     * <p>Metodo que multiplica una matriz por un numero escalar y devuelve el resultado en una nueva matriz
+     * @param matriz matriz de double que se multiplicara por el numero escalar
+     * @param escalar numero double que se multiplicara por cada elemento de la matriz
+     * @return matrizResultado matriz de double con el resultado de la multiplicacion entre la matriz y el escalar
      */
     public double [][] multiplicacionEscalar(double [][] matriz, double escalar){
 
@@ -83,9 +87,9 @@ public class OperacionesBasicasMatrices {
     //******************************************Calcular determinante*************************************************
     
     /**
-     *
-     * @param matriz
-     * @return
+     * <p>Metodo que calcula el determinante de una matriz
+     * @param matriz matriz de double de la cual se calculara el determinante
+     * @return determinante numero double que almacena el valor de la determinante de la matriz
      */
     public double calcularDeterminante (double[][] matriz){
         double determinante = 0;
@@ -107,11 +111,12 @@ public class OperacionesBasicasMatrices {
     
     /**
      *
-     * @param matriz
-     * @param filas
-     * @param columnas
-     * @param columna
-     * @return
+     * <p>Metodo para obtener una sub matriz necesaria para calcular la determinante de una matriz
+     * @param matriz original de la cual se esta calculando la determinante
+     * @param filas cantidad de filas de la matriz original
+     * @param columnas cantidad de columnas de la matriz original
+     * @param columna columna actual en la cual se esta obteniendo valores para calcular el determinante
+     * @return submatriz matriz de double de  necesaria para calcular el determinante de la matriz original
      */
     public static double[][] getSubmatriz(double[][] matriz, int filas, int columnas, int columna) {
         double [][] submatriz = new double[filas-1][columnas-1];
@@ -128,20 +133,20 @@ public class OperacionesBasicasMatrices {
     //**************************************************************************************************************
 
     /**
-     *
-     * @param matrizA
-     * @return
+     * <p>Metodo que calcuala la solucion de un sistema de ecuaciones por el metodo de Cramer
+     * @param matrizA que representa las ecuaciones a solucionar
+     * @return rCramer matriz de double con la soluciones del sistema de ecuaciones si se da el caso de que tenga
      */
     public double[][] metodoDeCramer(double [][] matrizA) {
         int tamanio = matrizA.length;
         double[][] matrizDeEcuaciones = new double[tamanio][tamanio];
         matrizDeEcuaciones = generarMatrizEcuaciones(matrizA);    
-        double[][] Rcramer = new double[1][tamanio];    
+        double[][] rCramer = new double[1][tamanio];    
         double determinante = calcularDeterminante(matrizDeEcuaciones);
 
         if (determinante == 0) {
             JOptionPane.showMessageDialog(null,"No tiene solucion con la regla de Cramer");
-            return Rcramer;
+            return rCramer;
         }
         double[] vectorDeSoluciones = new double[tamanio];
         vectorDeSoluciones = generarVectorSoluciones(matrizA);
@@ -152,17 +157,17 @@ public class OperacionesBasicasMatrices {
         for (int i = 0; i < tamanio; i++) {
             matrizCoeficiente = sustituye(matrizDeEcuaciones,vectorDeSoluciones,i);
             detDelCoeficiente = calcularDeterminante(matrizCoeficiente);
-            Rcramer[0][i]=(detDelCoeficiente/determinante);
+            rCramer[0][i]=(detDelCoeficiente/determinante);
         }
-        return Rcramer; 
+        return rCramer; 
     }
 
     /**
-     *
-     * @param matrizDeEcuaciones
-     * @param vectorDeSoluciones
-     * @param pos
-     * @return
+     *<p>Metodo que sustituye las columnas de la matriz original por la matriz de coeficientes
+     * @param matrizDeEcuaciones matriz con los valores del sistema de ecuaciones
+     * @param vectorDeSoluciones vector con las soluciones del sistema de ecuaciones 
+     * @param pos poscicion de la columna a sustituit
+     * @return matrizCoeficiente matriz con los valores de la columna sustituidos
      */
     public double [][] sustituye(double matrizDeEcuaciones[][], double vectorDeSoluciones[], int pos) {
         double matrizCoeficiente[][] = new double[matrizDeEcuaciones.length][matrizDeEcuaciones.length];
@@ -181,8 +186,9 @@ public class OperacionesBasicasMatrices {
 
     /**
      *
-     * @param matriz
-     * @return
+     * <p>Metodo que genera una matriz de ecuaciones con los valores de la matriz original
+     * @param matriz es la matriz de la cual se obtendran los valores para generar la matriz de ecuaciones
+     * @return matrizDeEcuaciones matriz de ecuaciones generada 
      */
     public static double[][] generarMatrizEcuaciones(double[][] matriz){
         int tamanio = matriz.length;
@@ -197,9 +203,9 @@ public class OperacionesBasicasMatrices {
     }
 
     /**
-     *
-     * @param matriz
-     * @return
+     *<p>Metodo que genera un vector con las soluciones del sistema de ecuaciones
+     * @param matriz es la matriz de la cual se obtendran los valores para generar el vector de soluciones
+     * @return vectorDeSoluciones vector de soluciones generado con la matriz original
      */
     public static double[] generarVectorSoluciones(double[][] matriz){
         int tamanio = matriz.length;

@@ -6,20 +6,24 @@
 package main;
 import Controlador.CtrlMatrices;
 /**
+ * Clase main de la aplicación.
  *
+ * @author carlosavila
+ * @author leonardohernandez
  * @author josebaeza
+ * @author nicolasgala
+ * @version 1.0
  */
 public class Main {
 
     /**
      *
+     * meto main de la aplicacion que la inicializa
+     * 
      * @param args
      */
-    public static void main(String[] args){
-        
-        
+    public static void main(String[] args){  
        CtrlMatrices not = new CtrlMatrices();
-        
     }
             
 }

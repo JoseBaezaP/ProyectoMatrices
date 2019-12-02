@@ -4,79 +4,84 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase ModeloMatriz clase para validar y enviar los resultados de las operaciones de matrices a la vista de la aplicacion.
  *
+ * @author carlosavila
+ * @author leonardohernandez
  * @author josebaeza
+ * @author nicolasgala
+ * @version 1.0
  */
 public class ModeloMatriz {
     /**
-     *
-     */
+    * Variable publica: MatrizA modelo para generar la matrizA de manera visual
+    */
     public DefaultTableModel MatrizA = new DefaultTableModel();
 
     /**
-     *
-     */
+    * Variable publica: MatrizB modelo para generar la matrizB de manera visual
+    */
     public DefaultTableModel MatrizB = new DefaultTableModel();
 
     /**
-     *
-     */
+    * Variable publica: MatrizResultante modelo para generar la matriz resultante de manera visual
+    */
     public DefaultTableModel MatrizResultante = new DefaultTableModel();   
     /**
-     *
-     * @return
+     *<p>metodo que devuelve el modelo de la MatrizA
+     * @return MatrizA modelo de la matrizA con la que se haran operaciones
      */
     public DefaultTableModel getMatrizA() {
         return MatrizA;
     }
     
     /**
-     *
-     * @return
+     *<p>metodo que devuelve el modelo de la MatrizB
+     * @return MatrizB modelo de la matrizB con la que se haran operaciones
      */
     public DefaultTableModel getMatrizB() {
         return MatrizB;
     }
     
     /**
-     *
-     * @return
+     *<p>metodo que devuelve el modelo de la MatrizResultante
+     * @return MatrizResultante modelo de la MatrizResultante que almacena los resultados de las operaciones con la MatrizA y la MatrizB
      */
     public DefaultTableModel getMatrizResultante() {
         return MatrizResultante;
     }
     
     /**
-     *
-     * @param MatrizA
+     *<p>Metodo que establece el modelo de la MatrizA
+     * @param MatrizA modelo de la matrizA con los valores a establecer
      */
     public void setMatrizA(DefaultTableModel MatrizA) {
         this.MatrizA = MatrizA;
     }
     
     /**
-     *
-     * @param MatrizB
+     *<p>Metodo que establece el modelo de la MatrizB
+     * @param MatrizB modelo de la matrizB con los valores a establecer
      */
     public void setMatrizB(DefaultTableModel MatrizB) {
         this.MatrizB = MatrizB;
     }
     
     /**
-     *
-     * @param MatrizResultante
+     *<p>Metodo que establece el modelo de la MatrizResultante
+     * @param MatrizResultante modelo de la MatrizResultante con los valores a establecer
      */
     public void setMatrizResultante(DefaultTableModel MatrizResultante) {
         this.MatrizResultante = MatrizResultante;
     }
     
     /**
-     *
-     * @param filaMatrizA
-     * @param columnaMatrizA
-     * @param filaMatrizB
-     * @param columnaMatrizB
-     * @param operacion
+     *<p>Metodo que valida que se cumplan las condiciones para que se pueda calcular la suma y la multiplicacion
+     * @param filaMatrizA numero de filas de la matrizA
+     * @param columnaMatrizA numero de columnas de la matrizA
+     * @param filaMatrizB numero de filas de la matrizB
+     * @param columnaMatrizB numero de columnas de la matrizB
+     * @param operacion es la operacion que se esta intentando realizar
      */
     public void validarOperacionDosMatrices(int filaMatrizA, int columnaMatrizA, int filaMatrizB, int columnaMatrizB, String operacion) {
         boolean sePuede;
@@ -105,6 +110,12 @@ public class ModeloMatriz {
         }           
     }
     
+    /**
+     *<p>Metodo que valida que se cumplan las condiciones para que se pueda calcular la determinante y la regla de Cramer
+     * @param filas numero de filas de la matriz
+     * @param columnas numero de columnas de la matriz
+     * @param operacion es la operacion que se esta intentando realizar
+     */
     public void validarOperacion(int filas, int columnas, String operacion){
         switch (operacion){
             case "Determinante":
@@ -122,9 +133,9 @@ public class ModeloMatriz {
         }
     }
     /**
-     *
-     * @param fila
-     * @param columna
+     *<p>Metodo que genera la MatrizA de manera visual en una tabla
+     * @param fila numero de filas de la matriz
+     * @param columna numero de columnas de la matriz
      */
     public void generarMatrizA(int fila, int columna) {
         try {
@@ -137,9 +148,9 @@ public class ModeloMatriz {
     }
     
     /**
-     *
-     * @param fila
-     * @param columna
+     *<p>Metodo que genera la MatrizB de manera visual en una tabla
+     * @param fila numero de filas de la matriz
+     * @param columna numero de columnas de la matriz
      */
     public void generarMatrizB(int fila, int columna) {
         try {
@@ -151,9 +162,9 @@ public class ModeloMatriz {
     }
     
     /**
-     *
-     * @param fila
-     * @param columna
+     *<p>Metodo que genera la MatrizResultado de manera visual en una tabla
+     * @param fila numero de filas de la matriz
+     * @param columna numero de columnas de la matriz
      */
     public void generarMatrizResultado(int fila, int columna) {        
         MatrizResultante.setColumnCount(columna);

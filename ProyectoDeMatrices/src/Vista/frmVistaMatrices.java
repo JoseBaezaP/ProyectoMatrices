@@ -1,10 +1,19 @@
 package Vista;
 /**
+ * Clase frmVistaMatrices vista de la aplicacion.
  *
- * @author ANJ
+ * @author carlosavila
+ * @author leonardohernandez
+ * @author josebaeza
+ * @author nicolasgala
+ * @version 1.0
  */
 public class frmVistaMatrices extends javax.swing.JFrame {
-    /** Creates new form frmVistaMatrices */
+     /**
+     * 
+     * Constructor para la vista de las matrices
+     * 
+     */
     public frmVistaMatrices() {
         initComponents();
     }
@@ -354,6 +363,8 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
     /**
      *
+     * meto main de la vista que inicializa la vista de la aplicacion y sus elementos
+     * 
      * @param args
      */
     public static void main(String args[]) {

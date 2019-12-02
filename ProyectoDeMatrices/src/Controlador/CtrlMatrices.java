@@ -6,18 +6,29 @@ import Modelo.ModeloMatriz;
 import Modelo.OperacionesBasicasMatrices;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
+ * Clase CtrlMatrices clase que muestra los datos de las matrices en la vista atraves de la clase ModeloMatriz.
  *
+ * @author carlosavila
+ * @author leonardohernandez
  * @author josebaeza
+ * @author nicolasgala
+ * @version 1.0
  */
 public class CtrlMatrices implements ActionListener{
-    
+    /**
+    * Variable: vistaMatrices javaform que genera las matrices de manera visual por medio de tablas
+    */
     frmVistaMatrices vistaMatrices;
+    /**
+    * Variable: operaciones que maneja la operacion que se realiza con las matrices
+    */
     OperacionesBasicasMatrices operaciones = new OperacionesBasicasMatrices();
     
-    /**
-     *
+     /**
+     * 
+     * Constructor para el control de las matrices
+     * 
      */
     public CtrlMatrices(){
         this.vistaMatrices = new frmVistaMatrices();
@@ -27,7 +38,7 @@ public class CtrlMatrices implements ActionListener{
     }
 
     /**
-     *
+     * <p>Metodo que inicializa los elementos de control de las matrices para el visual de la aplicacion
      */
     public void inicializar(){
         this.vistaMatrices.rb_Suma.addActionListener(this);
@@ -53,7 +64,7 @@ public class CtrlMatrices implements ActionListener{
     }
     
     /**
-     *
+     * <p>Metodo que inicializa las tablas en las cuales se representan las matrices de manera visual
      */
     public void inicializarTablas(){   
         DefaultTableModel modeloA = new DefaultTableModel(); 
@@ -74,9 +85,8 @@ public class CtrlMatrices implements ActionListener{
     }
     
     /**
-     *
+     * <p>Metodo que genera las matrices de manera visual atraves de tablas
      */
-    
     public void generarMatrices(){
         try{
             ModeloMatriz modelo = new ModeloMatriz();
@@ -128,7 +138,7 @@ public class CtrlMatrices implements ActionListener{
     }
     
     /**
-     *
+     *<p>Metodo que muestra 2 matrices en caso de se seleccione una operacion con 2 matrices
      */
     public void mostrarElementosDosMatrices(){   
         this.vistaMatrices.lb_Escalar.setVisible(false);
@@ -144,7 +154,9 @@ public class CtrlMatrices implements ActionListener{
         this.vistaMatrices.lb_Resultado.setVisible(true);
         this.vistaMatrices.tbl_Resultado.setVisible(true);
     }
-    
+    /**
+     *<p>Metodo que muestra 2 matrices en caso de se seleccione una operacion con 1 matriz
+     */
     private void mostrarElementosUnaMatriz(){
         this.vistaMatrices.txt_Determinante.setVisible(false);
         this.vistaMatrices.lb_Determinante.setVisible(false);
@@ -160,6 +172,10 @@ public class CtrlMatrices implements ActionListener{
         this.vistaMatrices.tbl_Resultado.setVisible(true);
     }
 
+    /**
+     *<p>Metodo que recolecta los datos ingresados en la tabla para ingresarlas en la matrizA
+     * @return datosMatrizA matriz de double que contiene la informacion ingresada en la tabla
+     */
     private double[][] recolectarDatosMatrizA(){
         int filas = this.vistaMatrices.tbl_MatrizA.getRowCount();
         int columnas = this.vistaMatrices.tbl_MatrizA.getColumnCount();
@@ -175,7 +191,10 @@ public class CtrlMatrices implements ActionListener{
         }
         return datosMatrizA;
     }
-    
+    /**
+     *<p>Metodo que recolecta los datos ingresados en la tabla para ingresarlas en la matrizB
+     * @return datosMatrizB matriz de double que contiene la informacion ingresada en la tabla
+     */
     private double[][] recolectarDatosMatrizB(){
         int filas = this.vistaMatrices.tbl_MatrizB.getRowCount();
         int columnas = this.vistaMatrices.tbl_MatrizB.getColumnCount();
@@ -192,6 +211,10 @@ public class CtrlMatrices implements ActionListener{
         return datosMatrizB;
     }
     
+     /**
+     *<p>Metodo que genera la tabla de resultados con los datos de la matrizResultado
+     * @param matriz matriz de double que contiene los resultados de la operacion realizada que se usara oara generar la tabla
+     */
     private void mostrarMatrizResultado(double[][] matriz){
         int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
         int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
@@ -202,6 +225,9 @@ public class CtrlMatrices implements ActionListener{
         }                
     }
     
+     /**
+     *<p>Metodo que detecta la operacion que se selecciono y ejecuta la operacion
+     */
     private void seleccionarOperacion(){
         
         if(this.vistaMatrices.rb_Suma.isSelected() == true){
@@ -244,8 +270,8 @@ public class CtrlMatrices implements ActionListener{
     }
     
     /**
-     *
-     * @param event
+     *<p>Metodo que detecta el vento sobre los botones para que ejecuten la accion que tienen asignada
+     * @param event es el evento que desata la accionde los botones por lo general un click
      */
     @Override
     public void actionPerformed(ActionEvent event) {  
