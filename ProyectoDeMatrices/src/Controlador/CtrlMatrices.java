@@ -83,56 +83,53 @@ public class CtrlMatrices implements ActionListener{
             ModeloMatriz modelo = new ModeloMatriz();
             int filasMatrizA = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizA.getText());
             int columnasMatrizA = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizA.getText());
-            boolean operacionUnaMatriz = this.vistaMatrices.rb_InvGauss.isSelected();
-             switch(valorRadioButton){
-            case "Suma":
-                 int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
-                int columnasMatrizB = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
-                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB,"Suma");
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-            case "MultEsc":
-                double[][] matrizResultadoEsc = operaciones.multiplicacionEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
-                mostrarMatrizResultado(matrizResultadoEsc);
-                mostrarElementosUnaMatriz();
-                break;
-            case "Multiplicacion":
-                int filasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
-                int columnasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
-                modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizBMul, columnasMatrizBMul,"Multiplicacion");
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-            case "SistEc":
-                modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEc");
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-            case "Determinante":
-                modelo.validarOperacion(filasMatrizA, columnasMatrizA, "Determinante");
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-            case "SistEcCramer":
-                 modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEcCramer");
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-            case "InvGauss":
-                modelo.generarMatrizA(filasMatrizA, columnasMatrizA);
-                modelo.generarMatrizResultado(filasMatrizA, columnasMatrizA);
-                this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
-                this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
-                break;
-        }     
+            switch(valorRadioButton){
+                case "Suma":
+                     int filasMatrizB = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
+                    int columnasMatrizB = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
+                    modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizB, columnasMatrizB,"Suma");
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+                case "MultEsc":
+                    double[][] matrizResultadoEsc = operaciones.multiplicacionEscalar(recolectarDatosMatrizA(), Double.parseDouble(this.vistaMatrices.txt_Escalar.getText()));
+                    mostrarMatrizResultado(matrizResultadoEsc);
+                    mostrarElementosUnaMatriz();
+                    break;
+                case "Multiplicacion":
+                    int filasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_FilasMatrizB.getText());
+                    int columnasMatrizBMul = Integer.parseInt(this.vistaMatrices.txt_ColumnasMatrizB.getText());
+                    modelo.validarOperacionDosMatrices(filasMatrizA,columnasMatrizA, filasMatrizBMul, columnasMatrizBMul,"Multiplicacion");
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_MatrizB.setModel(modelo.getMatrizB());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+                case "SistEc":
+                    modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEc");
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+                case "Determinante":
+                    modelo.validarOperacion(filasMatrizA, columnasMatrizA, "Determinante");
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+                case "SistEcCramer":
+                     modelo.validarOperacion(filasMatrizA, columnasMatrizA, "SistEcCramer");
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+                case "InvGauss":
+                    modelo.generarMatrizA(filasMatrizA, columnasMatrizA);
+                    modelo.generarMatrizResultado(filasMatrizA, columnasMatrizA);
+                    this.vistaMatrices.tbl_MatrizA.setModel(modelo.getMatrizA());
+                    this.vistaMatrices.tbl_Resultado.setModel(modelo.getMatrizResultante());
+                    break;
+            }        
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Debe ingresar datos numericos en los campos de Fila(s) y Columna(s)");
-        }
-        
-        
+        } 
     }
     
     /**
@@ -202,9 +199,7 @@ public class CtrlMatrices implements ActionListener{
     
     private void mostrarMatrizResultado(double[][] matriz){
         int filas = this.vistaMatrices.tbl_Resultado.getRowCount();
-        System.out.println("F: " + filas);
         int columnas = this.vistaMatrices.tbl_Resultado.getColumnCount();
-        System.out.println("C: " + columnas);
         for(int i = 0; i < filas; i++){
             for(int j = 0; j < columnas; j++){
                 this.vistaMatrices.tbl_Resultado.getModel().setValueAt(matriz[i][j], i, j);
@@ -294,5 +289,4 @@ public class CtrlMatrices implements ActionListener{
                 break;
         }
     }
-    
 }
