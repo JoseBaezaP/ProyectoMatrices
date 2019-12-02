@@ -304,10 +304,35 @@ public class OperacionesBasicasMatrices {
                 }
             }
         }
+     //***********************************************Sistema de ecuaciones*************************************************
     
-    
-    
-    
-    
-    
+    public double[][] resolverSistemaEcuacion(double [][] matrizA) {
+        double[][] matrix=matrizA;
+            for (int fpivot = 0; fpivot < matrizA.length; fpivot++)
+            {
+ 
+                double nor = matrix[fpivot][fpivot];
+ 
+                for (int i = 0; i < matrizA[0].length; i++)
+                {
+                    matrix[fpivot][i] = matrix[fpivot][i] / nor;
+                }
+ 
+                int f = fpivot + 1;
+                if (f == matrizA.length) {f = 0;}
+                for (int fila = 0; fila < matrizA.length - 1; fila++)
+                {                
+                    double k = matrix[f][fpivot];
+ 
+                    for (int c = fpivot; c < matrizA[0].length; c++)
+                    {
+                        matrix[f][c] = matrix[f][c] - (k * matrix[fpivot][c]);
+                    }
+                    if (f == matrizA.length - 1) f = 0;
+                    else f++; 
+                }
+            }
+         
+            return matrix;
+        }
 }

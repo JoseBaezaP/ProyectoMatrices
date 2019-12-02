@@ -119,6 +119,10 @@ public class ModeloMatriz {
                     generarMatrizA(filas, columnas);
                     generarMatrizResultado(1, filas);
                     break;
+            case "SistEc":
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(filas, columnas);
+                    break;
         }
     }
     /**
