@@ -121,6 +121,10 @@ public class ModeloMatriz {
                     JOptionPane.showMessageDialog(null,"La matriz debe ser cuadradada"); 
                 }
                 break;
+            case "MultEsc":
+                    generarMatrizA(filas, columnas);
+                     generarMatrizResultado(filas, columnas);
+                break;
             case "SistEcCramer":
                 if(!sePuede){
                     generarMatrizA(filas, columnas);
@@ -137,6 +141,14 @@ public class ModeloMatriz {
                      } else {
                     JOptionPane.showMessageDialog(null,"La matriz no puede ser cuadradada"); 
                 }
+            case "InvGauss":         
+                if(sePuede){
+                    generarMatrizA(filas, columnas);
+                    generarMatrizResultado(filas, columnas);
+                } else {
+                    JOptionPane.showMessageDialog(null,"La matriz debe ser cuadradada"); 
+                }
+                break;
         }
     }
     /**
