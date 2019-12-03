@@ -1,4 +1,5 @@
 package Vista;
+
 /**
  * Clase frmVistaMatrices vista de la aplicacion.
  *
@@ -9,10 +10,11 @@ package Vista;
  * @version 1.0
  */
 public class frmVistaMatrices extends javax.swing.JFrame {
-     /**
-     * 
+
+    /**
+     *
      * Constructor para la vista de las matrices
-     * 
+     *
      */
     public frmVistaMatrices() {
         initComponents();
@@ -320,41 +322,41 @@ public class frmVistaMatrices extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GenerarActionPerformed
-      
+
     }//GEN-LAST:event_btn_GenerarActionPerformed
 
     private void rb_SumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SumaActionPerformed
-      // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_rb_SumaActionPerformed
 
     private void rb_MultEscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_MultEscActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_rb_MultEscActionPerformed
 
     private void rb_MultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_MultiplicarActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_rb_MultiplicarActionPerformed
 
     private void rb_SistEcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SistEcActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_rb_SistEcActionPerformed
 
     private void rb_DeterminanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_DeterminanteActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_rb_DeterminanteActionPerformed
 
     private void rb_SistEcCramerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_SistEcCramerActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_rb_SistEcCramerActionPerformed
 
     private void rb_InvGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_InvGaussActionPerformed
         // TODO add your handling code here:
-    
+
     }//GEN-LAST:event_rb_InvGaussActionPerformed
 
     private void txt_FilasMatrizAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FilasMatrizAActionPerformed
@@ -363,8 +365,9 @@ public class frmVistaMatrices extends javax.swing.JFrame {
 
     /**
      *
-     * meto main de la vista que inicializa la vista de la aplicacion y sus elementos
-     * 
+     * meto main de la vista que inicializa la vista de la aplicacion y sus
+     * elementos
+     *
      * @param args
      */
     public static void main(String args[]) {
@@ -398,7 +401,7 @@ public class frmVistaMatrices extends javax.swing.JFrame {
                 vista.setLocationRelativeTo(null);
                 vista.setResizable(false);
                 vista.setVisible(true);
-                
+
             }
         });
     }
