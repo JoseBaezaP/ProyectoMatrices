@@ -44,6 +44,7 @@ public final class CtrlMatrices implements ActionListener {
     ModeloMatriz modelo;
 
     /**
+     * <p>Metodo main de la aplicacion que la inicializa
      * @param args the command line arguments
      */
     public static void main(String[] args) {
