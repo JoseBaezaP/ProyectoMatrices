@@ -57,7 +57,7 @@ public class OperacionesBasicasMatrices {
         matrizResultado = new double[filasA][columnasB];
 
         //inicializa la matriz para la multiplicación 
-        for (int i = 0; i < filasB; i++) {
+        for (int i = 0; i < filasA; i++) {
             for (int j = 0; j < columnasB; j++) {
                 matrizResultado[i][j] = 0;
             }
